@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AppDispatch } from '../store';
+import { AppDispatch, RootState } from '../store';
 import { joinRoom } from '../../domain/skyway/room';
 import { sendMessage } from '../../domain/skyway/repository';
 import { getForce } from '../../domain/simulator/force';
@@ -34,9 +34,11 @@ export const p2pSlice = createSlice({
   },
 });
 
-export const sendMessageAction = createAsyncThunk<void, string>(
+export const sendMessageAction = createAsyncThunk<void, string, { dispatch: AppDispatch }>(
   'sendMessageAction',
-  async (req) => {
+  async (req, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    if (!state.p2p.peerId) return;
     sendMessage(req);
   },
 );

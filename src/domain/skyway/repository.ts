@@ -11,8 +11,9 @@ export const getDataStream = async () => {
 };
 export const sendMessage = async (message: string) => {
   const dataStream = await getDataStream();
+  if (!dataStream) return;
   console.log('send message', message);
-  if (dataStream) dataStream.write(message);
+  dataStream.write(message);
 };
 
 export const subscribeAndAttach = async (

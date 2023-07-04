@@ -7,12 +7,15 @@ export const joinRoom = async (
   token = getToken(),
   name = roomName,
 ) => {
+  // トークンがないときはSkyWayに繋がない
+  if (!token) return null;
   // 既に開いているデータストリームへ再度アタッチすることはできない
   const dataStream = await getDataStream();
-  if (!dataStream) return null;
-  if (dataStream.published) return null;
+  if (!dataStream || dataStream.published) return null;
 
   console.log('token', token);
+
+  // SSRの時にwindowにアクセスするとエラーになるのでブロック
   if (!window) return null;
   const { SkyWayContext, SkyWayRoom } = window.skyway_room;
   const context = await SkyWayContext.Create(token);
