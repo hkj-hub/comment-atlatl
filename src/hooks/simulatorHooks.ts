@@ -5,7 +5,7 @@ import { simulateLoop, simulator } from '../domain/simulator';
 import { simulatorSlice } from '../store/slices/simulatorSlice';
 import { getForce } from '../domain/simulator/force';
 import { formatText } from '../domain/simulator/format';
-// import { sendMessageAction } from '../store/slices/p2pSlice';
+import { sendMessageAction } from '../store/slices/p2pSlice';
 
 export const useSimulatorHooks = () => {
   const dispatch = useAppDispatch();
@@ -28,7 +28,7 @@ export const useSimulatorHooks = () => {
     const formattedText = formatText(text);
     const force = getForce(formattedText);
     simulator.addText({ text: formattedText, position: { x: 200, y: 200 }, force });
-    // dispatch(sendMessageAction(formattedText));
+    dispatch(sendMessageAction(formattedText));
     setText('');
   };
 

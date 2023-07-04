@@ -1,8 +1,9 @@
-import { nowInSec, SkyWayAuthToken, uuidV4 } from '@skyway-sdk/room';
 import { applicationToken, authToken, secretToken } from './constants';
 
 export const getToken = () => {
   if (authToken) return authToken;
+  if (!window) return '';
+  const { SkyWayAuthToken, uuidV4, nowInSec } = window.skyway_room;
   const token = new SkyWayAuthToken({
     jti: uuidV4(),
     iat: nowInSec(),

@@ -1,4 +1,3 @@
-import { SkyWayContext, SkyWayRoom } from '@skyway-sdk/room';
 import { roomName } from './constants';
 import { getToken } from './token';
 import { getDataStream, subscribeAndAttach } from './repository';
@@ -13,6 +12,8 @@ export const joinRoom = async (
   if (dataStream.published) return null;
 
   console.log('token', token);
+  if (!window) return null;
+  const { SkyWayContext, SkyWayRoom } = window.skyway_room;
   const context = await SkyWayContext.Create(token);
   const room = await SkyWayRoom.FindOrCreate(context, { type: 'p2p', name });
   const me = await room.join();
