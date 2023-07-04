@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # https://note.com/mumumu170/n/n3fea048af5a2
+# https://vercel.com/docs/concepts/projects/project-configuration#ignorecommand
 echo "VERCEL_GIT_COMMIT_REF: $VERCEL_GIT_COMMIT_REF"
 
 # プレビュー環境`develop`ブランチ と 本番環境の`main`ブランチ の時のみデプロイ
