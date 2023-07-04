@@ -9,6 +9,7 @@ export const joinRoom = async (
 ) => {
   // 既に開いているデータストリームへ再度アタッチすることはできない
   const dataStream = await getDataStream();
+  if (!dataStream) return null;
   if (dataStream.published) return null;
 
   console.log('token', token);
