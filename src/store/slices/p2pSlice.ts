@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AppDispatch } from '../store';
-// import { joinRoom } from '../../domain/skyway/room';
-// import { sendMessage } from '../../domain/skyway/repository';
+import { joinRoom } from '../../domain/skyway/room';
+import { sendMessage } from '../../domain/skyway/repository';
 import { getForce } from '../../domain/simulator/force';
 import { simulator } from '../../domain/simulator';
 
@@ -9,11 +9,10 @@ export const joinP2PRoomAction = createAsyncThunk<string | null, void, { dispatc
   'joinP2PRoomAction',
   async (_req, thunkAPI) => {
     try {
-      // const id = await joinRoom((message) => {
-      //   const force = getForce(message);
-      //   simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
-      // });
-      const id = 'test';
+      const id = await joinRoom((message) => {
+        const force = getForce(message);
+        simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
+      });
       return id;
     } catch (error: any) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -38,6 +37,6 @@ export const p2pSlice = createSlice({
 export const sendMessageAction = createAsyncThunk<void, string>(
   'sendMessageAction',
   async (req) => {
-    // sendMessage(req);
+    sendMessage(req);
   },
 );
