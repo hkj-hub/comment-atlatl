@@ -1,13 +1,5 @@
-import Link from 'next/link';
-import Layout from '../components/Layout';
+import Simulator from '../components/pages/Simulator';
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">About</Link>
-    </p>
-  </Layout>
-);
+const IndexPage = () => <Simulator />;
 
 export default IndexPage;
