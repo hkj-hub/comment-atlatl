@@ -29,6 +29,9 @@ export const SIDEBAR: Sidebar = {
       { text: 'Storybook', link: `${BASE_PATH}/comment-atlatl-components/index.html` },
       { text: 'Jestレポート', link: `${BASE_PATH}/comment-atlatl-jest-reports/jest.html` },
     ],
-    設定: [{ text: 'GitHub Pages', link: `${BASE_PATH}/ja/settings/github/github-pages` }],
+    設定: [
+      { text: 'GitHub Pages', link: `${BASE_PATH}/ja/settings/github/github-pages` },
+      { text: 'Skyway Console', link: `${BASE_PATH}/ja/settings/skyway/console` },
+    ],
   },
 };
