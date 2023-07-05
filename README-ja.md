@@ -74,6 +74,14 @@ tsconfig.json    ... ビルドターゲットはesnext。 @/のエイリアス�
 next.config.json ... webpack設定もここで行う
 ```
 
+#### テスト設定
+
+```
+.vscode/extendsions.json ... vscode用ランナー拡張のおすすめ設定
+jest.config.mjs          ... @/エイリアス等の設定
+tests/*                  ... テストファイル用
+```
+
 ## デプロイ
 
 ### vercel
