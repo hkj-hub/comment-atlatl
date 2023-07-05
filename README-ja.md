@@ -134,3 +134,7 @@ const nextConfig = {
   },
 };
 ```
+
+### SkyWay の利用
+
+npm install を行うと、Next.js の SSR 時にエラーとなるため、cdn を利用してクライアントでのみ動作するようにしている。
