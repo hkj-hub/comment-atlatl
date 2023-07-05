@@ -25,7 +25,10 @@ export type Sidebar = Record<
 export const SIDEBAR: Sidebar = {
   ja: {
     目次: [{ text: 'イントロダクション', link: `${BASE_PATH}/ja/introduction` }],
-    開発用: [{ text: 'Jestレポート', link: `${BASE_PATH}/comment-atlatl-jest-reports/jest.html` }],
+    開発用: [
+      { text: 'Storybook', link: `${BASE_PATH}/comment-atlatl-components/index.html` },
+      { text: 'Jestレポート', link: `${BASE_PATH}/comment-atlatl-jest-reports/jest.html` },
+    ],
     設定: [{ text: 'GitHub Pages', link: `${BASE_PATH}/ja/settings/github/github-pages` }],
   },
 };

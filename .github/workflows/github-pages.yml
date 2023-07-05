@@ -65,6 +65,10 @@ jobs:
       - name: move jest report
         run: npm run mv-jest-reports
 
+      # build storybook
+      - name: Build Storybook
+        run: npm run build-storybook
+
       # ドキュメント作成
       - name: Build with Astro
         run: |
