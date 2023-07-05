@@ -56,7 +56,7 @@ jobs:
 
       # jest reports 作成
       - name: Packages install
-        run: npm install
+        run: npm ci
       - name: Jest Unit Test
         run: npm run test
 
