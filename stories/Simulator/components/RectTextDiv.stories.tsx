@@ -1,11 +1,18 @@
 import ViewerBaseWrapper from '@/components/pages/Simulator/BaseWrapper';
-import RectDiv from '@/components/pages/Simulator/components/RectDiv';
+import { RectTextDiv } from '@/components/pages/Simulator/components/RectTextDiv';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Simulator/components/RectDiv',
-  component: RectDiv,
-  args: { position: { x: 0, y: 0 }, width: 100, height: 100 },
+  title: 'Simulator/components/RectTextDiv',
+  component: RectTextDiv,
+  args: {
+    position: { x: 0, y: 0 },
+    width: 48,
+    height: 22,
+    fontSize: 16,
+    text: 'てすと',
+    rotation: 90,
+  },
   tags: ['autodocs'], // ドキュメント自動生成
   decorators: [
     (Story, context) => (
@@ -14,8 +21,15 @@ const meta = {
       </ViewerBaseWrapper>
     ),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component: 'テキストを座標上に表示するコンポーネント',
+      },
+    },
+  },
   argTypes: {
-    rotate: {
+    rotation: {
       description: '傾き(deg)',
       table: {
         defaultValue: {
@@ -24,13 +38,9 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof RectDiv>;
+} satisfies Meta<typeof RectTextDiv>;
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-export const RightUp: Story = { args: { position: { x: 100, y: 100 }, width: 100, height: 100 } };
-export const LeftUpRotate: Story = {
-  args: { position: { x: -100, y: 100 }, width: 50, height: 50, rotate: 45 },
-};

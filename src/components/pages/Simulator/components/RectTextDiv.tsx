@@ -8,9 +8,9 @@ export function RectTextDiv(props: {
   position: { x: number; y: number };
   rotation?: number;
 }) {
-  const rotate = props.rotation ? `rotate(${toDegree(props.rotation)}deg)` : '';
-  const width = positionToScale(props.width);
-  const height = positionToScale(props.height);
+  const rotate = props.rotation ? `rotate(${props.rotation}deg)` : '';
+  const width = props.width;
+  const height = props.height;
   return (
     <div
       style={{
@@ -21,8 +21,8 @@ export function RectTextDiv(props: {
         boxSizing: 'border-box',
         pointerEvents: 'none',
         border: 'none',
-        transform: `translateX(${positionToScale(props.position.x) - width / 2}px) translateY(${
-          -positionToScale(props.position.y) - height / 2
+        transform: `translateX(${props.position.x - width / 2}px) translateY(${
+          -props.position.y - height / 2
         }px) ${rotate}`,
       }}
     >
