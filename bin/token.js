@@ -45,4 +45,4 @@ const token = new SkyWayAuthToken({
     },
   },
 }).encode(`${secretToken}`);
-console.log(`https://comment-atlatl.vercel.app/?token=${token}`);
+console.log(`${process.env.APPLICATION_URL}/?token=${token}`);

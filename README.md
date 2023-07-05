@@ -15,9 +15,15 @@ A project that wants to make such a mechanism.
    ```
    SECRET_TOKEN=your skyway secret key
    APPLICATION_TOKEN=your sky way application id
+   APPLICATION_URL=http://localhost:3000
    ```
 1. generate url with skyway token
    ```
    npm install
    npm run generate-url
    ```
+1. run local server
+   ```
+   npm run dev
+   ```
+1. access generated url
