@@ -15,6 +15,8 @@ const config = {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
+  collectCoverage: true,
+  coverageDirectory: './docs/astro/public/comment-atlatl-jest-coverage',
   reporters: [
     'default',
     [

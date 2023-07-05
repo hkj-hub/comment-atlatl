@@ -28,6 +28,10 @@ export const SIDEBAR: Sidebar = {
     開発用: [
       { text: 'Storybook', link: `${BASE_PATH}/comment-atlatl-components/index.html` },
       { text: 'Jestレポート', link: `${BASE_PATH}/comment-atlatl-jest-reports/jest.html` },
+      {
+        text: 'Jestカバレッジ',
+        link: `${BASE_PATH}/comment-atlatl-jest-coverage/lcov-report/index.html`,
+      },
     ],
     設定: [
       { text: 'GitHub Pages', link: `${BASE_PATH}/ja/settings/github/github-pages` },
