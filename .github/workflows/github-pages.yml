@@ -54,6 +54,13 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
 
+      # jest reports 作成
+      - name: Jest Unit Test
+        run: npm run test
+
+      - name: move jest report
+        run: npm run mv-jest-reports
+
       # ドキュメント作成
       - name: Build with Astro
         run: |

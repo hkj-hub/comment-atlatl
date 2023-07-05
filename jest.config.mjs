@@ -15,6 +15,16 @@ const config = {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: '__reports__',
+        filename: 'jest.html',
+      },
+    ],
+  ],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
