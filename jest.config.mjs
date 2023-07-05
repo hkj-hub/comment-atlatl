@@ -20,7 +20,7 @@ const config = {
     [
       'jest-html-reporters',
       {
-        publicPath: '__reports__',
+        publicPath: './docs/astro/public/comment-atlatl-jest-reports',
         filename: 'jest.html',
       },
     ],

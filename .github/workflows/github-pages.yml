@@ -58,12 +58,9 @@ jobs:
       - name: Packages install
         run: npm ci
 
-      # jest reports 作成
+      # jest test & reports 作成
       - name: Jest Unit Test
         run: npm run test
-
-      - name: move jest report
-        run: npm run mv-jest-reports
 
       # build storybook
       - name: Build Storybook
