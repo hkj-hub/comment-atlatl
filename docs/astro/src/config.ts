@@ -25,5 +25,6 @@ export type Sidebar = Record<
 export const SIDEBAR: Sidebar = {
   ja: {
     目次: [{ text: 'イントロダクション', link: `${BASE_PATH}/ja/introduction` }],
+    設定: [{ text: 'GitHub Pages', link: `${BASE_PATH}/ja/settings/github/github-pages` }],
   },
 };
