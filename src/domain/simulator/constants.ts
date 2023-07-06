@@ -22,7 +22,7 @@ export const simulaterProps = {
     height: 50,
     density: 1,
     mass: 1,
-    text: 'てすと',
+    text: '',
   },
   deviders: [
     // 床
