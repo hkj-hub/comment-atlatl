@@ -8,6 +8,10 @@ layout: ../../layouts/MainLayout.astro
 
 コメントを投げたくなるような仕組みを作りたい。
 
+## リンク
+
+[github](https://github.com/hkj-hub/comment-atlatl)
+
 ## 利用素材
 
 [favicon - sun spear icon](https://game-icons.net/1x1/delapouite/sun-spear.html)
