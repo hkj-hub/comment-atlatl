@@ -3,6 +3,28 @@
 つい、コメントしたくなる。
 そんな仕組みを作りたいプロジェクト。
 
+## 使い方
+
+1.  [skyway](https://console.skyway.ntt.com/login)コンソールにログインする。
+1.  アプリケーションを作成し、 シークレットキーとアプリケーション ID を取得する
+1.  clone した本リポジトリに、`.env.local` ファイルを作成し、取得したシークレットキーとアプリケーション ID を記載する
+    ```
+    SECRET_TOKEN=your skyway secret key
+    APPLICATION_TOKEN=your sky way application id
+    APPLICATION_URL=http://localhost:3000
+    ```
+1.  SkyWay トークンを付与したローカルサーバの URL を発行する
+    ```
+    npm install
+    npm run generate-url
+    ```
+1.  ローカルサーバを起動する
+    ```
+    npm install
+    npm run dev
+    ```
+1.  先ほど発行したローカルサーバの URL にアクセスする
+
 ## 環境構築
 
 ### はじめに
