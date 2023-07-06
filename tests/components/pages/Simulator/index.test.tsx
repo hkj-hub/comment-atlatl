@@ -15,17 +15,23 @@ const texts = [
   },
 ];
 
-function mockSimulatorHooks() {
+function mockSimulatorHooks(text: string) {
   const addText = jest.fn();
   const setText = jest.fn();
   jest
     .spyOn(SimulatorHooks, 'useSimulatorHooks')
-    .mockReturnValue({ texts, text: 'さんぷる', addText, setText });
+    .mockReturnValue({ texts, text, addText, setText });
   return { addText, setText };
 }
 
 test('初期状態で送信ボタンが非活性状態であること', () => {
-  mockSimulatorHooks();
+  mockSimulatorHooks('');
   render(<Simulator />);
   expect(screen.getByRole('button')).toBeDisabled();
+});
+
+test('文字が入力された状態で送信ボタンが活性状態であること', () => {
+  mockSimulatorHooks('テスト');
+  render(<Simulator />);
+  expect(screen.getByRole('button')).toBeEnabled();
 });

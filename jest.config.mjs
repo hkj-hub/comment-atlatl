@@ -13,8 +13,7 @@ const config = {
     //  Cannot find module '@dimforge/rapier2d' の対応。 compatを代わりに使用する
     // https://qiita.com/ShinKano/items/d5d6ee0fdef823d075bb
     // https://rapier.rs/docs/user_guides/javascript/getting_started_js
-    '@dimforge/rapier2d':
-      '<rootDir>/node_modules/@dimforge/rapier2d-compat/rapier.cjs.js',
+    '@dimforge/rapier2d': '<rootDir>/tests/rapierMock.js',
   },
   testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['./tests/jest.setup.ts'],
