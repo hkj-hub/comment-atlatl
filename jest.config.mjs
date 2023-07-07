@@ -18,18 +18,18 @@ const config = {
   testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['./tests/jest.setup.ts'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
-  // collectCoverage: true,
-  // coverageDirectory: './docs/astro/public/comment-atlatl-jest-coverage',
-  // reporters: [
-  //   'default',
-  //   [
-  //     'jest-html-reporters',
-  //     {
-  //       publicPath: './docs/astro/public/comment-atlatl-jest-reports',
-  //       filename: 'jest.html',
-  //     },
-  //   ],
-  // ],
+  collectCoverage: true,
+  coverageDirectory: './docs/astro/public/comment-atlatl-jest-coverage',
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: './docs/astro/public/comment-atlatl-jest-reports',
+        filename: 'jest.html',
+      },
+    ],
+  ],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
