@@ -10,7 +10,8 @@ layout: ../../layouts/MainLayout.astro
 
 ## リンク
 
-[github](https://github.com/hkj-hub/comment-atlatl)
+[github](https://github.com/hkj-hub/comment-atlatl)  
+[vercel](https://vercel.com/hkj-hub/comment-atlatl)
 
 ## 利用素材
 
