@@ -1,0 +1,15 @@
+.comment {
+  opacity: 0; /* 初期状態では非表示にする */
+  transform: translateX(100%); /* 初期状態では左側に位置する */
+  animation: slideIn 0.5s ease-in-out forwards; /* @keyframesで定義したアニメーションを適用 */
+}
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
