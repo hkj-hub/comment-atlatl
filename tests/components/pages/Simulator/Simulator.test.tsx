@@ -1,4 +1,4 @@
-import Simulator from '@/components/pages/Simulator';
+import Simulator from '@/components/pages/Simulator/Simulator';
 import { render, screen } from '@testing-library/react';
 
 // // モック作成準備
