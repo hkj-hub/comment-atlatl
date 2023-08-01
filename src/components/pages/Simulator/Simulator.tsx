@@ -13,10 +13,10 @@ const Simulator: React.FC = () => {
       <button disabled={text.length === 0} onClick={() => addText()}>
         {` 送信 📤`}
       </button>
-      <button style={emoteBtnStyle} onClick={() => addEmotion('👏ﾊﾟﾁﾊﾟﾁ')}>{`👏`}</button>
-      <button style={emoteBtnStyle} onClick={() => addEmotion('👍ｲｲﾈ')}>{`👍`}</button>
-      <button style={emoteBtnStyle} onClick={() => addEmotion('🤝ﾐｰﾄｩｰ')}>{`🤝`}</button>
-      <button style={emoteBtnStyle} onClick={() => addEmotion('♡ｽｷ')}>{`♡`}</button>
+      <button title="ﾊﾟﾁﾊﾟﾁ" style={emoteBtnStyle} onClick={() => addEmotion('👏')}>{`👏`}</button>
+      <button title="ｲｲﾈ" style={emoteBtnStyle} onClick={() => addEmotion('👍')}>{`👍`}</button>
+      <button title="ﾐｰﾄｩｰ" style={emoteBtnStyle} onClick={() => addEmotion('🤝')}>{`🤝`}</button>
+      <button title="ｽｷ" style={emoteBtnStyle} onClick={() => addEmotion('♡')}>{`♡`}</button>
     </div>
   );
 };
