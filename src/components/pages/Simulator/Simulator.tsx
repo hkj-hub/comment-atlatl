@@ -10,9 +10,7 @@ const Simulator: React.FC = () => {
     <div style={{ overflow: 'hidden' }}>
       <Viewer props={simulaterProps} items={texts} />
       <input value={text} onChange={(e) => setText(e.target.value)} />
-      <button disabled={text.length === 0} onClick={() => addText()}>
-        {` 送信 📤`}
-      </button>
+      <button disabled={text.length === 0} onClick={() => addText()}>{`送信 📤`}</button>
       <button title="ﾊﾟﾁﾊﾟﾁ" style={emoteBtnStyle} onClick={() => addEmotion('👏')}>{`👏`}</button>
       <button title="ｲｲﾈ" style={emoteBtnStyle} onClick={() => addEmotion('👍')}>{`👍`}</button>
       <button title="ﾐｰﾄｩｰ" style={emoteBtnStyle} onClick={() => addEmotion('🤝')}>{`🤝`}</button>
