@@ -8,6 +8,10 @@ layout: ../../layouts/MainLayout.astro
 
 コメントを投げたくなるような仕組みを作りたい。
 
+## デプロイフロー
+
+![](/comment-atlatl/images/deploy.png)
+
 ## リンク
 
 [github](https://github.com/hkj-hub/comment-atlatl)  

@@ -143,6 +143,18 @@ docs/astro/src/pages/ja/ ... マークダウンでドキュメントを記述
 public/images/           ... ドキュメントに画像を使いたいときはここに配置。マークダウンで画像のURLを指定するときはprefixで/comment-atlatl/が必要。（例： /comment-atlatl/images/hoge.png ）
 ```
 
+### Diagrams
+
+chocolatey と pip を使ってインストールする手順
+
+```
+choco install graphviz -y
+choco install python -y
+pip install diagrams
+```
+
+[参考: classmethod](https://dev.classmethod.jp/articles/diagrams-introduction/)
+
 ## 設定
 
 ### WebAssembly の利用設定
