@@ -3,7 +3,7 @@ import { useSimulatorHooks } from '../../../hooks/simulatorHooks';
 import { simulaterProps } from '../../../domain/simulator/constants';
 import Viewer from './Viewer';
 
-const emoteBtnStyle = { marginLeft: '1rem' };
+const emoteBtnStyle: React.CSSProperties = { marginLeft: '1rem', cursor: 'pointer' };
 const Simulator: React.FC = () => {
   const { texts, addText, setText, text, addEmotion } = useSimulatorHooks();
   return (

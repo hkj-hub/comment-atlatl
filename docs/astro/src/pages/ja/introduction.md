@@ -17,6 +17,8 @@ layout: ../../layouts/MainLayout.astro
 [github](https://github.com/hkj-hub/comment-atlatl)  
 [vercel](https://vercel.com/hkj-hub/comment-atlatl)
 
+[skyway - api](https://github.com/skyway/skyway-webrtc-gateway/blob/master/api/api.yaml)
+
 ## 利用素材
 
 [favicon - sun spear icon](https://game-icons.net/1x1/delapouite/sun-spear.html)
