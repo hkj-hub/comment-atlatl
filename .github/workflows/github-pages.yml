@@ -6,6 +6,8 @@ on:
     paths:
       - .github/workflows/**
       - docs/** # documentsフォルダ内が更新されたときに実施
+      - tests/**
+      - stories/**
   workflow_dispatch:
 permissions:
   contents: read

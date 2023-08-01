@@ -8,10 +8,16 @@ layout: ../../layouts/MainLayout.astro
 
 コメントを投げたくなるような仕組みを作りたい。
 
+## デプロイフロー
+
+![](/comment-atlatl/images/deploy.png)
+
 ## リンク
 
 [github](https://github.com/hkj-hub/comment-atlatl)  
 [vercel](https://vercel.com/hkj-hub/comment-atlatl)
+
+[skyway - api](https://github.com/skyway/skyway-webrtc-gateway/blob/master/api/api.yaml)
 
 ## 利用素材
 
