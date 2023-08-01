@@ -32,5 +32,11 @@ export const useSimulatorHooks = () => {
     setText('');
   };
 
-  return { texts, addText, setText, text };
+  const addEmotion = (text: string) => {
+    const force = getForce(text);
+    simulator.addText({ text, position: { x: 200, y: 200 }, force });
+    dispatch(sendMessageAction(text));
+  };
+
+  return { texts, addText, setText, text, addEmotion };
 };
