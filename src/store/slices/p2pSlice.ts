@@ -28,12 +28,16 @@ export const joinP2PRoomAction = createAsyncThunk<string | null, void, { dispatc
     }
   },
 );
-const initialState = {
+interface P2PState {
+  peerId: string;
+}
+
+const initialState: P2PState = {
   peerId: '',
 };
 
 export const p2pSlice = createSlice({
-  name: 'p2pSlice',
+  name: 'p2p',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -43,12 +47,13 @@ export const p2pSlice = createSlice({
   },
 });
 
-export const sendMessageAction = createAsyncThunk<void, string, { dispatch: AppDispatch }>(
-  'sendMessageAction',
-  async (req, thunkAPI) => {
-    thunkAPI.dispatch(addMessage(createMessage(req)));
-    const state = thunkAPI.getState() as RootState;
-    if (!state.p2p.peerId) return;
-    sendMessage(req);
-  },
-);
+export const sendMessageAction = createAsyncThunk<
+  void,
+  string,
+  { dispatch: AppDispatch; state: RootState }
+>('sendMessageAction', async (req, thunkAPI) => {
+  thunkAPI.dispatch(addMessage(createMessage(req)));
+  const state = thunkAPI.getState();
+  if (!state.p2p.peerId) return;
+  sendMessage(req);
+});

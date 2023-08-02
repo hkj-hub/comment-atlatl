@@ -33,8 +33,8 @@ declare global {
         init: Init,
       ) => Promise<Init['type'] extends 'p2p' ? P2PRoom : SfuRoom>;
     };
-    SkyWayAuthToken;
-    uuidV4;
-    nowInSec;
+    SkyWayAuthToken: string;
+    uuidV4: string;
+    nowInSec: string;
   };
 }
