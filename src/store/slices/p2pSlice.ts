@@ -28,12 +28,16 @@ export const joinP2PRoomAction = createAsyncThunk<string | null, void, { dispatc
     }
   },
 );
-const initialState = {
+interface P2PState {
+  peerId: string;
+}
+
+const initialState: P2PState = {
   peerId: '',
 };
 
 export const p2pSlice = createSlice({
-  name: 'p2pSlice',
+  name: 'p2p',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
