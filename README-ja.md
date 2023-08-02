@@ -145,6 +145,8 @@ public/images/           ... ドキュメントに画像を使いたいときは
 
 ### Diagrams
 
+#### 利用準備
+
 chocolatey と pip を使ってインストールする手順
 
 ```
@@ -153,6 +155,10 @@ choco install python -y
 pip install diagrams
 ```
 
+#### 利用
+
+`docs/diagrams/deploy.py`に本文を記載する。
+その後、`npm run build-diagrams`で画像を生成できる。
 [参考: classmethod](https://dev.classmethod.jp/articles/diagrams-introduction/)
 
 ## 設定
