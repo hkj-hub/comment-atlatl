@@ -7,6 +7,12 @@ import { simulator } from '../../domain/simulator';
 import { addMessage } from './messageSlice';
 import { v4 as uuidv4 } from 'uuid'; // uuidをインポート
 
+const createMessage = (message: string) => ({
+  id: uuidv4(),
+  message,
+  timestamp: new Date().toString(),
+});
+
 export const joinP2PRoomAction = createAsyncThunk<string | null, void, { dispatch: AppDispatch }>(
   'joinP2PRoomAction',
   async (_req, thunkAPI) => {
@@ -14,9 +20,7 @@ export const joinP2PRoomAction = createAsyncThunk<string | null, void, { dispatc
       const id = await joinRoom((message) => {
         const force = getForce(message);
         simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
-        thunkAPI.dispatch(
-          addMessage({ id: uuidv4(), message, timestamp: new Date().toDateString() }),
-        );
+        thunkAPI.dispatch(addMessage(createMessage(message)));
       });
       return id;
     } catch (error: any) {
@@ -42,7 +46,7 @@ export const p2pSlice = createSlice({
 export const sendMessageAction = createAsyncThunk<void, string, { dispatch: AppDispatch }>(
   'sendMessageAction',
   async (req, thunkAPI) => {
-    thunkAPI.dispatch(addMessage({ id: uuidv4(), message: req, timestamp: new Date().toString() }));
+    thunkAPI.dispatch(addMessage(createMessage(req)));
     const state = thunkAPI.getState() as RootState;
     if (!state.p2p.peerId) return;
     sendMessage(req);
