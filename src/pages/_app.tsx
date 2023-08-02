@@ -1,10 +1,11 @@
+import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
 import { joinP2PRoomAction } from '../store/slices/p2pSlice';
 if (global.window) {
   store.dispatch(joinP2PRoomAction());
 }
-export default function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Provider store={store}>

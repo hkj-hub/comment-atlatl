@@ -1,5 +1,5 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
-type Message = { timestamp: string; message: string; id: string };
+export type Message = { timestamp: string; message: string; id: string };
 // メッセージエンティティアダプターを作成
 export const messageAdapter = createEntityAdapter<Message>({
   selectId: (a) => a.id,
