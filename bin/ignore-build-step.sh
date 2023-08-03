@@ -4,8 +4,8 @@
 # https://vercel.com/docs/concepts/projects/project-configuration#ignorecommand
 echo "VERCEL_GIT_COMMIT_REF: $VERCEL_GIT_COMMIT_REF"
 
-# プレビュー環境`develop`ブランチ と 本番環境の`main`ブランチ の時のみデプロイ
-if [[ "$VERCEL_GIT_COMMIT_REF" == "develop" || "$VERCEL_GIT_COMMIT_REF" == "main" ]] ; then
+# プレビュー環境`release/*`ブランチ と 本番環境の`main`ブランチ の時のみデプロイ
+if [[ "$VERCEL_GIT_COMMIT_REF" == release/* || "$VERCEL_GIT_COMMIT_REF" == "main" ]] ; then
   # Proceed with the build
   echo "✅ - Build can proceed"
   exit 1;

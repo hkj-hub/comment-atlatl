@@ -20,4 +20,9 @@ with Diagram('デプロイ フロー',filename="../astro/public/images/deploy",)
     with Cluster("Vercel Pipeline"):
         Vercel = Custom('Vercel Pipeline','../../../diagrams/icons/vercel-icon-svgrepo-com.png')
         Custom('Next.js','../../../diagrams/icons/next-dot-js-svgrepo-com.png')
+
     cl >> Github('main branch') >> Vercel
+    with Cluster("Vercel Pipeline To Staging"):
+        VercelStg = Custom('Vercel Pipeline To Staging','../../../diagrams/icons/vercel-icon-svgrepo-com.png')
+        Custom('Next.js','../../../diagrams/icons/next-dot-js-svgrepo-com.png')
+    cl >> Github('release branch') >> VercelStg
