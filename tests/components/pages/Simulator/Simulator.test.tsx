@@ -43,9 +43,10 @@ test('文字が入力された状態で送信ボタンを押したときに送�
   screen.getByRole('button', { name: '送信 📤' }).click();
   expect(addText.mock.calls.length).toBe(1);
 });
-test('文字が入力された状態でEnterキーを押したときに送信されること', () => {
+
+test('文字が入力された状態でEnterキーを押したときに送信されること', async () => {
   const { addText } = mockSimulatorHooks('テスト');
   render(<Simulator />);
-  userEvent.type(screen.getByRole('textbox'), '{Enter}');
+  await userEvent.type(screen.getByRole('textbox'), '送信!{enter}');
   expect(addText.mock.calls.length).toBe(1);
 });
