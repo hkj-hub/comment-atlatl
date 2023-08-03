@@ -13,7 +13,7 @@ const Simulator: React.FC = () => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={(e) => {
-          if (e.nativeEvent.isComposing || e.key !== 'Enter') return;
+          if (e.nativeEvent.isComposing || e.key !== 'Enter' || text.length === 0) return;
           addText();
         }}
       />

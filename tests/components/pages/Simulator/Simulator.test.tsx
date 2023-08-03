@@ -37,23 +37,27 @@ test('文字が入力された状態で送信ボタンが活性状態である�
   render(<Simulator />);
   expect(screen.getByRole('button', { name: '送信 📤' })).toBeEnabled();
 });
-test('文字が入力された状態で送信ボタンを押したときに送信されること', () => {
-  const { addText } = mockSimulatorHooks('テスト');
-  render(<Simulator />);
-  screen.getByRole('button', { name: '送信 📤' }).click();
-  expect(addText.mock.calls.length).toBe(1);
+describe('ボタンで送信', () => {
+  test('文字が入力された状態で送信ボタンを押したときに送信されること', () => {
+    const { addText } = mockSimulatorHooks('テスト');
+    render(<Simulator />);
+    screen.getByRole('button', { name: '送信 📤' }).click();
+    expect(addText.mock.calls.length).toBe(1);
+  });
 });
 
-test('文字が入力された状態でEnterキーを押したときに送信されること', async () => {
-  const { addText } = mockSimulatorHooks('テスト');
-  render(<Simulator />);
-  await userEvent.type(screen.getByRole('textbox'), '送信!{enter}');
-  expect(addText.mock.calls.length).toBe(1);
-});
+describe('Enterで送信', () => {
+  test('文字が入力された状態でEnterキーを押したときに送信されること', async () => {
+    const { addText } = mockSimulatorHooks('テスト');
+    render(<Simulator />);
+    await userEvent.type(screen.getByRole('textbox'), '送信!{enter}');
+    expect(addText.mock.calls.length).toBe(1);
+  });
 
-test('文字が入力されていない状態でEnterキーを押したときに送信されないこと', async () => {
-  const { addText } = mockSimulatorHooks('');
-  render(<Simulator />);
-  await userEvent.type(screen.getByRole('textbox'), '{enter}');
-  expect(addText.mock.calls.length).toBe(0);
+  test('文字が入力されていない状態でEnterキーを押したときに送信されないこと', async () => {
+    const { addText } = mockSimulatorHooks('');
+    render(<Simulator />);
+    await userEvent.type(screen.getByRole('textbox'), '{enter}');
+    expect(addText.mock.calls.length).toBe(0);
+  });
 });
