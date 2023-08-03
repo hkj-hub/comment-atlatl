@@ -8,6 +8,45 @@ layout: ../../layouts/MainLayout.astro
 
 コメントを投げたくなるような仕組みを作りたい。
 
+## ブランチ戦略
+
+- 簡易 gitflow
+- id/{issue 番号}/\* で feature ブランチを作成して作業
+- いずれ、release/\* ブランチから main にコミットするようにしたい。
+  - release/\* ブランチ作成時にはステージング環境へのデプロイをしたい
+
+<pre class="mermaid">
+
+gitGraph
+    commit tag: "0.1"
+    branch develop order: 3
+    commit
+    branch id/1/featureA order: 4
+    branch id/2/featureB order: 5
+    commit
+    checkout develop
+    commit
+    checkout id/1/featureA
+    commit
+    checkout id/2/featureB
+    commit
+    checkout id/1/featureA
+    commit
+    checkout develop
+    merge id/1/featureA
+    checkout main
+    merge develop
+    checkout id/2/featureB
+    merge develop
+    commit
+    checkout id/2/featureB
+    commit
+    checkout develop
+    merge id/2/featureB
+</pre>
+
+[参考](https://enu23456.hatenablog.com/entry/2022/12/07/195555)
+
 ## デプロイフロー
 
 ![](/comment-atlatl/images/deploy.png)
