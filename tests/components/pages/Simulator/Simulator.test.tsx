@@ -1,5 +1,6 @@
 import Simulator from '@/components/pages/Simulator/Simulator';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 // // モック作成準備
 import * as SimulatorHooks from '@/hooks/simulatorHooks';
@@ -35,4 +36,16 @@ test('文字が入力された状態で送信ボタンが活性状態である�
   mockSimulatorHooks('テスト');
   render(<Simulator />);
   expect(screen.getByRole('button', { name: '送信 📤' })).toBeEnabled();
+});
+test('文字が入力された状態で送信ボタンを押したときに送信されること', () => {
+  const { addText } = mockSimulatorHooks('テスト');
+  render(<Simulator />);
+  screen.getByRole('button', { name: '送信 📤' }).click();
+  expect(addText.mock.calls.length).toBe(1);
+});
+test('文字が入力された状態でEnterキーを押したときに送信されること', () => {
+  const { addText } = mockSimulatorHooks('テスト');
+  render(<Simulator />);
+  userEvent.type(screen.getByRole('textbox'), '{Enter}');
+  expect(addText.mock.calls.length).toBe(1);
 });
