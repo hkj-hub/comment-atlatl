@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { textsSelector } from '../store/selector/simulatorSelector';
 import { simulateLoop, simulator } from '../domain/simulator';
-import { simulatorSlice } from '../store/slices/simulatorSlice';
 import { getForce } from '../domain/simulator/force';
 import { formatText } from '../domain/simulator/format';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { textsSelector } from '../store/selector/simulatorSelector';
 import { sendMessageAction } from '../store/slices/p2pSlice';
+import { simulatorSlice } from '../store/slices/simulatorSlice';
 
 export const useSimulatorHooks = () => {
   const dispatch = useAppDispatch();

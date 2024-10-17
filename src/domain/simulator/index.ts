@@ -1,6 +1,7 @@
+/* eslint-disable sonarjs/no-commented-code */
 import RAPIER, { Cuboid } from '@dimforge/rapier2d';
-import { SCALE, SimulaterProps, forceVector, gravity, simulaterProps } from './constants';
 import { toRadian } from './calc';
+import { SCALE, SimulaterProps, forceVector, gravity, simulaterProps } from './constants';
 
 const world = new RAPIER.World(gravity);
 
@@ -66,6 +67,7 @@ export const simulateLoop = () => {
       text: `${obj.text}`,
     };
   });
+
   // eventQueue.drainCollisionEvents((handle1, handle2, started) => {
   //   console.log('drainCollisionEvents', { handle1, handle2, started });
   //   const b1 = world.getRigidBody(handle1);

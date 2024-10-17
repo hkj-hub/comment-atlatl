@@ -1,6 +1,6 @@
+import React from 'react';
 import { useAppSelector } from '@/store/hooks';
 import { messageSelector } from '@/store/selector/messageSelector';
-import React from 'react';
 import HistoryComment from './components/History/HistoryComment';
 
 const History: React.FC = () => {
