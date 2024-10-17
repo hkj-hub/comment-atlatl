@@ -1,7 +1,6 @@
-/* eslint-disable sonarjs/new-cap */
-import kuzu_wasm from '@kuzu/kuzu-wasm';
 import Cytoscape from 'cytoscape';
 import { useEffect, useRef, useState } from 'react';
+import { getGraphDbClient } from '@/shared/lib/';
 import { CytoscapeComponent } from '@/shared/ui';
 
 function Graph() {
@@ -11,9 +10,7 @@ function Graph() {
   const cyref = useRef<Cytoscape.CoreLayout | null>(null);
   useEffect(() => {
     (async () => {
-      const kuzu = await kuzu_wasm();
-      const db = await kuzu.Database();
-      const conn = await kuzu.Connection(db);
+      const conn = await getGraphDbClient();
 
       // Create schema
       await conn.execute('CREATE NODE TABLE User(name STRING, age INT64, PRIMARY KEY (name))');

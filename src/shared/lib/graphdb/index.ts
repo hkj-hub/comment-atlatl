@@ -1,0 +1,1 @@
+export { getGraphDbClient } from './kuzu';
