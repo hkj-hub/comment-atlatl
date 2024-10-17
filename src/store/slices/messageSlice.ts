@@ -1,8 +1,8 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 export type Message = { timestamp: string; message: string; id: string };
 // メッセージエンティティアダプターを作成
-export const messageAdapter = createEntityAdapter<Message>({
-  selectId: (a) => a.id,
+export const messageAdapter = createEntityAdapter({
+  selectId: (a: Message) => a.id,
   // メッセージエンティティのソート基準としてtimestampを使用。降順
   sortComparer: (a, b) => b.timestamp.localeCompare(a.timestamp),
 });

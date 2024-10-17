@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSimulatorHooks } from '../../../hooks/simulatorHooks';
 import { simulaterProps } from '../../../domain/simulator/constants';
+import { useSimulatorHooks } from '../../../hooks/simulatorHooks';
 import Viewer from './Viewer';
 
 const emoteBtnStyle: React.CSSProperties = { marginLeft: '1rem', cursor: 'pointer' };

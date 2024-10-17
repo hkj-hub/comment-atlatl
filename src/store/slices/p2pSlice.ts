@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AppDispatch, RootState } from '../store';
-import { joinRoom } from '../../domain/skyway/room';
-import { sendMessage } from '../../domain/skyway/repository';
-import { getForce } from '../../domain/simulator/force';
-import { simulator } from '../../domain/simulator';
-import { addMessage } from './messageSlice';
 import { v4 as uuidv4 } from 'uuid'; // uuidをインポート
+import { simulator } from '../../domain/simulator';
+import { getForce } from '../../domain/simulator/force';
+import { sendMessage } from '../../domain/skyway/repository';
+import { joinRoom } from '../../domain/skyway/room';
+import { AppDispatch, RootState } from '../store';
+import { addMessage } from './messageSlice';
 
 const createMessage = (message: string) => ({
   id: uuidv4(),
@@ -13,21 +13,24 @@ const createMessage = (message: string) => ({
   timestamp: new Date().toString(),
 });
 
-export const joinP2PRoomAction = createAsyncThunk<string | null, void, { dispatch: AppDispatch }>(
-  'joinP2PRoomAction',
-  async (_req, thunkAPI) => {
-    try {
-      const id = await joinRoom((message) => {
-        const force = getForce(message);
-        simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
-        thunkAPI.dispatch(addMessage(createMessage(message)));
-      });
-      return id;
-    } catch (error: any) {
+export const joinP2PRoomAction = createAsyncThunk<
+  string | null | undefined,
+  void,
+  { dispatch: AppDispatch }
+>('joinP2PRoomAction', async (_req, thunkAPI) => {
+  try {
+    const id = await joinRoom((message) => {
+      const force = getForce(message);
+      simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
+      thunkAPI.dispatch(addMessage(createMessage(message)));
+    });
+    return id;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
       return thunkAPI.rejectWithValue({ error: error.message });
     }
-  },
-);
+  }
+});
 interface P2PState {
   peerId: string;
 }
