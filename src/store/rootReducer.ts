@@ -12,7 +12,7 @@ const combinedReducer = combineReducers({
 
 type CombinedState = ReturnType<typeof combinedReducer>;
 
-export const rootReducer = (state: CombinedState, action: UnknownAction) => {
+export const rootReducer = (state: CombinedState | undefined, action: UnknownAction) => {
   return combinedReducer(state, action);
 };
 
