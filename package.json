@@ -18,7 +18,9 @@
   },
   "dependencies": {
     "@dimforge/rapier2d": "^0.14.0",
+    "@kuzu/kuzu-wasm": "^0.6.2-dev",
     "@reduxjs/toolkit": "^2.3.0",
+    "cytoscape": "^3.30.2",
     "next": "14.2.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -40,6 +42,7 @@
     "@storybook/testing-library": "^0.2.1",
     "@testing-library/jest-dom": "^6.6.1",
     "@testing-library/react": "^16.0.1",
+    "@types/cytoscape": "^3.21.8",
     "@types/node": "^22.7.6",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",

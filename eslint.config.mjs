@@ -15,6 +15,7 @@ const compat = new FlatCompat({
 });
 
 export default tseslint.config({
+  ignores: ['dist', 'public', '*.mjs', '*.js'],
   extends: [
     js.configs.recommended,
     ...tseslint.configs.recommended,
@@ -26,7 +27,7 @@ export default tseslint.config({
   plugins: { 'unused-imports': unuserdPlugin, sonarjs },
   rules: {
     semi: ['error', 'always'],
-    complexity: ['error', 10], // 複雑度の設定
+    complexity: ['error', 7], // 複雑度の設定
     // unuserd-importsのrecommended設定を適用
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
@@ -69,7 +70,7 @@ export default tseslint.config({
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.ts', '.tsx'],
       },
       typescript: {
         alwaysTryTypes: true,
