@@ -10,6 +10,10 @@ const nextConfig = {
     config.output.webassemblyModuleFilename =
       (isServer ? '../' : '') + 'static/wasm/webassembly.wasm';
     config.resolve.alias['@'] = path.join(__dirname, 'src');
+
+    // kuzu-wasm の mjs ファイルを読み込むための設定
+    config.optimization.minimizer = [];
+
     return config;
   },
   // 開発サーバのヘッダに Cross-Origin-Opener-Policy を追加
