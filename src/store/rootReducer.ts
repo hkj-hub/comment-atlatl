@@ -1,4 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
+import { graphSlice } from './slices/graphSlice';
 import { messageSlice } from './slices/messageSlice';
 import { p2pSlice } from './slices/p2pSlice';
 import { simulatorSlice } from './slices/simulatorSlice';
@@ -8,6 +9,7 @@ const combinedReducer = combineReducers({
   message: messageSlice.reducer,
   simulator: simulatorSlice.reducer,
   p2p: p2pSlice.reducer,
+  [graphSlice.reducerPath]: graphSlice.reducer,
 });
 
 type CombinedState = ReturnType<typeof combinedReducer>;

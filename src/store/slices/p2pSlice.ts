@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid'; // uuidをインポート
+import { initDb } from '@/domain/comment';
 import { simulator } from '../../domain/simulator';
 import { getForce } from '../../domain/simulator/force';
 import { sendMessage } from '../../domain/skyway/repository';
 import { joinRoom } from '../../domain/skyway/room';
 import { AppDispatch, RootState } from '../store';
+import { createCommentNodeAction, createUserNodeAction } from './graphSlice';
 import { addMessage } from './messageSlice';
 
 const createMessage = (message: string) => ({
@@ -19,12 +21,19 @@ export const joinP2PRoomAction = createAsyncThunk<
   { dispatch: AppDispatch }
 >('joinP2PRoomAction', async (_req, thunkAPI) => {
   try {
-    const id = await joinRoom((message) => {
+    const peerId = await joinRoom((message) => {
       const force = getForce(message);
       simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
-      thunkAPI.dispatch(addMessage(createMessage(message)));
+      const msg = createMessage(message);
+      thunkAPI.dispatch(addMessage(msg));
+      thunkAPI.dispatch(createCommentNodeAction(msg));
     });
-    return id;
+
+    if (peerId) {
+      await initDb();
+      thunkAPI.dispatch(createUserNodeAction(peerId));
+    }
+    return peerId;
   } catch (error: unknown) {
     if (error instanceof Error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -55,7 +64,9 @@ export const sendMessageAction = createAsyncThunk<
   string,
   { dispatch: AppDispatch; state: RootState }
 >('sendMessageAction', async (req, thunkAPI) => {
-  thunkAPI.dispatch(addMessage(createMessage(req)));
+  const msg = createMessage(req);
+  thunkAPI.dispatch(addMessage(msg));
+  thunkAPI.dispatch(createCommentNodeAction(msg));
   const state = thunkAPI.getState();
   if (!state.p2p.peerId) return;
   sendMessage(req);
