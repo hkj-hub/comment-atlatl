@@ -21,12 +21,14 @@ export const joinP2PRoomAction = createAsyncThunk<
   { dispatch: AppDispatch }
 >('joinP2PRoomAction', async (_req, thunkAPI) => {
   try {
-    const peerId = await joinRoom((message) => {
+    const peerId = await joinRoom((messagePayload) => {
+      const json = JSON.parse(messagePayload);
+      const message = json.message;
       const force = getForce(message);
       simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
       const msg = createMessage(message);
       thunkAPI.dispatch(addMessage(msg));
-      thunkAPI.dispatch(createCommentNodeAction(msg));
+      thunkAPI.dispatch(createCommentNodeAction(json));
     });
 
     if (peerId) {
@@ -66,8 +68,9 @@ export const sendMessageAction = createAsyncThunk<
 >('sendMessageAction', async (req, thunkAPI) => {
   const msg = createMessage(req);
   thunkAPI.dispatch(addMessage(msg));
-  thunkAPI.dispatch(createCommentNodeAction(msg));
   const state = thunkAPI.getState();
   if (!state.p2p.peerId) return;
-  sendMessage(req);
+  const messagePayload = { ...msg, peerId: state.p2p.peerId };
+  sendMessage(JSON.stringify(messagePayload));
+  thunkAPI.dispatch(createCommentNodeAction(messagePayload));
 });

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { createCommentNode, createUserNode, getGraphdbCytoscape } from '@/domain/comment';
 import { AppDispatch, RootState } from '../store';
-import { Message } from './messageSlice';
+import { MessagePaylad } from './messageSlice';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 type Graph = { data: { id?: string; source?: string; target?: string; label?: string } };
@@ -34,7 +34,7 @@ export const createUserNodeAction = createAsyncThunk<
 });
 export const createCommentNodeAction = createAsyncThunk<
   void,
-  Message,
+  MessagePaylad,
   { dispatch: AppDispatch; state: RootState }
 >('createCommentNodeAction', async (req, thunkAPI) => {
   await createCommentNode(req);
