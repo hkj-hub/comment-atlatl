@@ -1,13 +1,13 @@
 import React from 'react';
 import { FaGithub } from 'react-icons/fa6';
 import { History } from '../../../entities/history';
-import Simulator from './Simulator';
+import Graph from './Graph';
 
-const Simulators: React.FC = () => {
+const Page: React.FC = () => {
   return (
     <>
       <div style={{ display: 'flex' }}>
-        <Simulator />
+        <Graph />
         <History />
       </div>
       <a href="https://github.com/hkj-hub/comment-atlatl" target="_blank">
@@ -16,4 +16,4 @@ const Simulators: React.FC = () => {
     </>
   );
 };
-export default Simulators;
+export default Page;
