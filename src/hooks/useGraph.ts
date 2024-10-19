@@ -36,6 +36,8 @@ export const useGraph = () => {
         selector: 'node',
         css: {
           content: 'data(label)',
+          width: 20,
+          height: 20,
         },
       },
       ...elements.filter((e) => e.data.type === 'User').map(createCytoscapeStyle),
