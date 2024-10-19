@@ -24,7 +24,7 @@ export const getGraphdbCytoscape = async () => {
   const rels = getQuueryData(relsResult);
 
   const nodeData = nodes.map(({ n }: { n: DBNodeResult }) => ({
-    data: { id: getId(n._ID), label: getLabel(n) },
+    data: { id: getId(n._ID), label: getLabel(n), type: n._LABEL },
   }));
   const relData = rels.map(({ r }: { r: DBRelResult }) => ({
     data: {
@@ -33,6 +33,7 @@ export const getGraphdbCytoscape = async () => {
       id: getId(r._ID),
       label: '所持',
     },
+    selectable: false,
   }));
 
   return [...nodeData, ...relData];

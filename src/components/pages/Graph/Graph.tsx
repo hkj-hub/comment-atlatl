@@ -16,7 +16,7 @@ function getLayoutOption(layout: string) {
 
 function Graph() {
   const cyref = useRef<Cytoscape.Core | null>(null);
-  const { elements } = useGraph();
+  const { elements, tapEventHandler, backgroundTapEventHandler, selectedLabel } = useGraph();
 
   const changeLayout = (layout: string) => {
     if (!cyref.current) return;
@@ -33,10 +33,18 @@ function Graph() {
         <button onClick={() => changeLayout('grid')}>grid</button>
         <button onClick={() => changeLayout('random')}>random</button>
       </div>
+      <div>返信先: {selectedLabel}</div>
       <CytoscapeComponent
         elements={elements}
-        cy={(cy) => {
+        cy={(cy: Cytoscape.Core) => {
           cyref.current = cy;
+          cy.removeAllListeners();
+          cy.on('tap', 'node', tapEventHandler);
+          cy.on('tap', function (evt) {
+            if (evt.target === cy) {
+              backgroundTapEventHandler(evt);
+            }
+          });
         }}
         layout={{ name: 'preset' }}
         wheelSensitivity={0.1}

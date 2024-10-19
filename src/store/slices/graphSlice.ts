@@ -7,10 +7,12 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 type Graph = { data: { id?: string; source?: string; target?: string; label?: string } };
 interface State {
   graph: Graph[];
+  selectedId: string | null;
 }
 
 const initialState: State = {
   graph: [],
+  selectedId: null,
 };
 
 export const graphSlice = createSlice({
@@ -19,6 +21,9 @@ export const graphSlice = createSlice({
   reducers: {
     setGraph: (state, action: PayloadAction<Graph[]>) => {
       state.graph = action.payload;
+    },
+    setSelectedId: (state, action: PayloadAction<string | null>) => {
+      state.selectedId = action.payload;
     },
   },
 });
