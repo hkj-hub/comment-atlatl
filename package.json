@@ -1,6 +1,6 @@
 {
   "name": "comment-atlatl",
-  "version": "0.2.0",
+  "version": "0.4.1",
   "private": true,
   "scripts": {
     "prepare": "git config --local core.hooksPath .githooks && echo Changed hooks directory when npm install",
@@ -20,6 +20,7 @@
     "@dimforge/rapier2d": "^0.14.0",
     "@kuzu/kuzu-wasm": "^0.6.2-dev",
     "@reduxjs/toolkit": "^2.3.0",
+    "boring-avatars": "^1.11.2",
     "cytoscape": "^3.30.2",
     "next": "14.2.15",
     "react": "^18.3.1",

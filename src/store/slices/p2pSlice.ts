@@ -1,13 +1,13 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid'; // uuidをインポート
 import { initDb } from '@/domain/comment';
 import { simulator } from '../../domain/simulator';
 import { getForce } from '../../domain/simulator/force';
 import { sendMessage } from '../../domain/skyway/repository';
 import { joinRoom } from '../../domain/skyway/room';
-import { AppDispatch, RootState } from '../store';
 import { createCommentNodeAction, createUserNodeAction } from './graphSlice';
 import { addMessage } from './messageSlice';
+import type { AppDispatch, RootState } from '../store';
 
 const createMessage = (message: string) => ({
   id: uuidv4(),
@@ -26,8 +26,8 @@ export const joinP2PRoomAction = createAsyncThunk<
       const message = json.message;
       const force = getForce(message);
       simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
-      const msg = createMessage(message);
-      thunkAPI.dispatch(addMessage(msg));
+      console.log('json', json);
+      thunkAPI.dispatch(addMessage(json));
       thunkAPI.dispatch(createCommentNodeAction(json));
     });
 
@@ -71,7 +71,16 @@ export const sendMessageAction = createAsyncThunk<
   thunkAPI.dispatch(addMessage(msg));
   const state = thunkAPI.getState();
   if (!state.p2p.peerId) return;
-  const messagePayload = { ...msg, peerId: state.p2p.peerId };
+  const messagePayload = {
+    ...msg,
+    peerId: state.p2p.peerId,
+    toCommentId: state.graphState.selectedId,
+  };
   sendMessage(JSON.stringify(messagePayload));
   thunkAPI.dispatch(createCommentNodeAction(messagePayload));
+});
+const stateSelector = (state: RootState) => state[p2pSlice.reducerPath];
+
+export const peerIdSelector = createSelector(stateSelector, (c) => {
+  return c.peerId;
 });

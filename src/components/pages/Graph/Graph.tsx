@@ -1,8 +1,8 @@
 import Cytoscape from 'cytoscape';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+
 import { useGraph } from '@/hooks/useGraph';
 import { CytoscapeComponent } from '@/shared/ui';
-
 function getLayoutOption(layout: string) {
   const base = { name: layout, fit: false };
   if (layout === 'cose') {
@@ -16,12 +16,16 @@ function getLayoutOption(layout: string) {
 
 function Graph() {
   const cyref = useRef<Cytoscape.Core | null>(null);
-  const { elements } = useGraph();
+  const { elements, initCytoscape, selectedLabel } = useGraph();
 
   const changeLayout = (layout: string) => {
     if (!cyref.current) return;
     cyref.current.layout(getLayoutOption(layout)).run();
   };
+  useEffect(() => {
+    if (!cyref.current || elements.length > 10) return;
+    cyref.current.layout({ name: 'breadthfirst' }).run();
+  }, [elements]);
   return (
     <div>
       <div>
@@ -33,10 +37,12 @@ function Graph() {
         <button onClick={() => changeLayout('grid')}>grid</button>
         <button onClick={() => changeLayout('random')}>random</button>
       </div>
+      <div>返信先: {selectedLabel}</div>
       <CytoscapeComponent
         elements={elements}
-        cy={(cy) => {
+        cy={(cy: Cytoscape.Core) => {
           cyref.current = cy;
+          initCytoscape(cy);
         }}
         layout={{ name: 'preset' }}
         wheelSensitivity={0.1}

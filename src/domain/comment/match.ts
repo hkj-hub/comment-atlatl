@@ -15,25 +15,43 @@ const getLabel = (n: DBNodeResult) => {
   if (n._LABEL === 'User') return n.peerId.slice(0, 4);
   return n.message;
 };
-export const getGraphdbCytoscape = async () => {
+const createNode = (n: DBNodeResult) => {
+  const data = { id: getId(n._ID), label: getLabel(n), type: n._LABEL };
+  if (n._LABEL === 'User') {
+    return {
+      data: { ...data, peerId: n.peerId },
+      selectable: false,
+    };
+  }
+  return {
+    data: { ...data, commentId: n.id, shape: 'triangle' },
+  };
+};
+const toRel = ({ r }: { r: DBRelResult }) => ({
+  data: {
+    source: getId(r._SRC),
+    target: getId(r._DST),
+    id: getId(r._ID),
+    label: '',
+  },
+  selectable: false,
+});
+export const getGraphdbCytoscape = async (self: string) => {
   const conn = await getGraphDbClient();
   const nodesResult = await conn.execute('MATCH (n) RETURN (n)');
   const nodes = getQuueryData(nodesResult);
-
-  const relsResult = await conn.execute('MATCH (a:User)-[r:Has]->(c:Comment) RETURN (r)');
+  const relsResult = await conn.execute(
+    `MATCH (a:User)-[r:Has]->(c:Comment)
+        WHERE COUNT {
+          MATCH (c)-[:Res]->(o:Comment)
+           WHERE o.peerId = a.peerId
+        } = 0
+    RETURN (r)`,
+  );
   const rels = getQuueryData(relsResult);
+  const commentRelsResult = await conn.execute('MATCH (a:Comment)-[r:Res]->(c:Comment) RETURN (r)');
+  const commentRels = getQuueryData(commentRelsResult);
+  const nodeData = nodes.map(({ n }: { n: DBNodeResult }) => createNode(n));
 
-  const nodeData = nodes.map(({ n }: { n: DBNodeResult }) => ({
-    data: { id: getId(n._ID), label: getLabel(n) },
-  }));
-  const relData = rels.map(({ r }: { r: DBRelResult }) => ({
-    data: {
-      source: getId(r._SRC),
-      target: getId(r._DST),
-      id: getId(r._ID),
-      label: '所持',
-    },
-  }));
-
-  return [...nodeData, ...relData];
+  return [...nodeData, ...rels.map(toRel), ...commentRels.map(toRel)];
 };

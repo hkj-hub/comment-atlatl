@@ -1,24 +1,38 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { createCommentNode, createUserNode, getGraphdbCytoscape } from '@/domain/comment';
-import { AppDispatch, RootState } from '../store';
 import { MessagePaylad } from './messageSlice';
+import type { AppDispatch, RootState } from '../store';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-type Graph = { data: { id?: string; source?: string; target?: string; label?: string } };
+export type GraphDataFromKuzu = {
+  data: {
+    id?: string;
+    source?: string;
+    target?: string;
+    label?: string;
+    type: string;
+    peerId?: string;
+  };
+};
 interface State {
-  graph: Graph[];
+  graph: GraphDataFromKuzu[];
+  selectedId: string | null;
 }
 
 const initialState: State = {
   graph: [],
+  selectedId: null,
 };
 
 export const graphSlice = createSlice({
   name: 'graphState',
   initialState,
   reducers: {
-    setGraph: (state, action: PayloadAction<Graph[]>) => {
+    setGraph: (state, action: PayloadAction<GraphDataFromKuzu[]>) => {
       state.graph = action.payload;
+    },
+    setSelectedId: (state, action: PayloadAction<string | null>) => {
+      state.selectedId = action.payload;
     },
   },
 });
@@ -29,7 +43,8 @@ export const createUserNodeAction = createAsyncThunk<
   { dispatch: AppDispatch; state: RootState }
 >('createUserNodeAction', async (peerId, thunkAPI) => {
   await createUserNode(peerId);
-  const graph = await getGraphdbCytoscape();
+  const state = thunkAPI.getState();
+  const graph = await getGraphdbCytoscape(state.p2p.peerId);
   thunkAPI.dispatch(graphSlice.actions.setGraph(graph));
 });
 export const createCommentNodeAction = createAsyncThunk<
@@ -38,7 +53,8 @@ export const createCommentNodeAction = createAsyncThunk<
   { dispatch: AppDispatch; state: RootState }
 >('createCommentNodeAction', async (req, thunkAPI) => {
   await createCommentNode(req);
-  const graph = await getGraphdbCytoscape();
+  const state = thunkAPI.getState();
+  const graph = await getGraphdbCytoscape(state.p2p.peerId);
   thunkAPI.dispatch(graphSlice.actions.setGraph(graph));
 });
 
