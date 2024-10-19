@@ -40,14 +40,12 @@ export const getGraphdbCytoscape = async () => {
   const conn = await getGraphDbClient();
   const nodesResult = await conn.execute('MATCH (n) RETURN (n)');
   const nodes = getQuueryData(nodesResult);
-  console.log('nodes', nodes);
-
-  const relsResult = await conn.execute('MATCH (a:User)-[r:Has]->(c:Comment) RETURN (r)');
+  const relsResult = await conn.execute(
+    'MATCH (a:User)-[r:Has]->(c:Comment) WHERE COUNT { MATCH (c)-[:Res]->() } = 0 RETURN (r)',
+  );
   const rels = getQuueryData(relsResult);
   const commentRelsResult = await conn.execute('MATCH (a:Comment)-[r:Res]->(c:Comment) RETURN (r)');
   const commentRels = getQuueryData(commentRelsResult);
-  console.log('commentRels', commentRels);
-
   const nodeData = nodes.map(({ n }: { n: DBNodeResult }) => createNode(n));
 
   return [...nodeData, ...rels.map(toRel), ...commentRels.map(toRel)];

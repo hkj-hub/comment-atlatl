@@ -23,7 +23,7 @@ function Graph() {
     cyref.current.layout(getLayoutOption(layout)).run();
   };
   useEffect(() => {
-    if (!cyref.current || elements.length > 5) return;
+    if (!cyref.current || elements.length > 10) return;
     cyref.current.layout({ name: 'breadthfirst' }).run();
   }, [elements]);
   return (
