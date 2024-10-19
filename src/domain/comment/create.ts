@@ -10,12 +10,13 @@ export const initDb = async () => {
     'CREATE NODE TABLE Comment(id STRING, message string, timestamp string, PRIMARY KEY (id))',
   );
   await conn.execute('CREATE REL TABLE Has(FROM User TO Comment)');
+  await conn.execute('CREATE REL TABLE Res(FROM Comment TO Comment)');
 };
 export const createUserNode = async (peerId: string) => {
   const conn = await getGraphDbClient();
   await conn.execute(`CREATE (u:User {peerId: '${peerId}'});`);
 };
-export const createCommentNode = async (msg: MessagePaylad) => {
+export const createCommentNode = async (msg: MessagePaylad, toCommentId?: string | null) => {
   const conn = await getGraphDbClient();
   await conn.execute(`CREATE (u:User {peerId: '${msg.peerId}'});`);
   await conn.execute(
@@ -26,4 +27,12 @@ export const createCommentNode = async (msg: MessagePaylad) => {
 WHERE u.peerId = '${msg.peerId}' AND c.id = '${msg.id}'
 CREATE (u)-[:Has]->(c);`,
   );
+
+  if (toCommentId) {
+    await conn.execute(
+      `MATCH (s:Comment), (d:Comment)
+        WHERE s.id = '${msg.id}' AND d.id = '${toCommentId}'
+        CREATE (s)-[:Res]->(d);`,
+    );
+  }
 };

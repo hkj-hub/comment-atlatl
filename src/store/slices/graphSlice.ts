@@ -42,7 +42,7 @@ export const createCommentNodeAction = createAsyncThunk<
   MessagePaylad,
   { dispatch: AppDispatch; state: RootState }
 >('createCommentNodeAction', async (req, thunkAPI) => {
-  await createCommentNode(req);
+  await createCommentNode(req, thunkAPI.getState().graphState.selectedId);
   const graph = await getGraphdbCytoscape();
   thunkAPI.dispatch(graphSlice.actions.setGraph(graph));
 });

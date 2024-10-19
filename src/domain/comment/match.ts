@@ -16,34 +16,39 @@ const getLabel = (n: DBNodeResult) => {
   return n.message;
 };
 const createNode = (n: DBNodeResult) => {
+  const data = { id: getId(n._ID), label: getLabel(n), type: n._LABEL };
   if (n._LABEL === 'User') {
     return {
-      data: { id: getId(n._ID), label: getLabel(n), type: n._LABEL },
+      data,
       selectable: false,
     };
   }
   return {
-    data: { id: getId(n._ID), label: getLabel(n), type: n._LABEL },
+    data: { ...data, commentId: n.id },
   };
 };
+const toRel = ({ r }: { r: DBRelResult }) => ({
+  data: {
+    source: getId(r._SRC),
+    target: getId(r._DST),
+    id: getId(r._ID),
+    label: '',
+  },
+  selectable: false,
+});
 export const getGraphdbCytoscape = async () => {
   const conn = await getGraphDbClient();
   const nodesResult = await conn.execute('MATCH (n) RETURN (n)');
   const nodes = getQuueryData(nodesResult);
+  console.log('nodes', nodes);
 
   const relsResult = await conn.execute('MATCH (a:User)-[r:Has]->(c:Comment) RETURN (r)');
   const rels = getQuueryData(relsResult);
+  const commentRelsResult = await conn.execute('MATCH (a:Comment)-[r:Res]->(c:Comment) RETURN (r)');
+  const commentRels = getQuueryData(commentRelsResult);
+  console.log('commentRels', commentRels);
 
   const nodeData = nodes.map(({ n }: { n: DBNodeResult }) => createNode(n));
-  const relData = rels.map(({ r }: { r: DBRelResult }) => ({
-    data: {
-      source: getId(r._SRC),
-      target: getId(r._DST),
-      id: getId(r._ID),
-      label: '所持',
-    },
-    selectable: false,
-  }));
 
-  return [...nodeData, ...relData];
+  return [...nodeData, ...rels.map(toRel), ...commentRels.map(toRel)];
 };

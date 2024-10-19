@@ -15,7 +15,7 @@ export const useGraph = () => {
       return;
     }
     setSelectedLabel(data.label);
-    dispatch(graphSlice.actions.setSelectedId(node.id()));
+    dispatch(graphSlice.actions.setSelectedId(data.commentId));
   };
   const backgroundTapEventHandler = function (evt: cytoscape.EventObject) {
     setSelectedLabel('');

@@ -1,5 +1,5 @@
 import Cytoscape from 'cytoscape';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useGraph } from '@/hooks/useGraph';
 import { CytoscapeComponent } from '@/shared/ui';
 
@@ -22,6 +22,10 @@ function Graph() {
     if (!cyref.current) return;
     cyref.current.layout(getLayoutOption(layout)).run();
   };
+  useEffect(() => {
+    if (!cyref.current || elements.length > 5) return;
+    cyref.current.layout({ name: 'breadthfirst' }).run();
+  }, [elements]);
   return (
     <div>
       <div>
