@@ -33,6 +33,7 @@ export const joinP2PRoomAction = createAsyncThunk<
 
     if (peerId) {
       await initDb();
+      // 自分という特別ユーザーを作成
       thunkAPI.dispatch(createUserNodeAction(peerId));
     }
     return peerId;
