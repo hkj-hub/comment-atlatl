@@ -4,7 +4,16 @@ import { AppDispatch, RootState } from '../store';
 import { MessagePaylad } from './messageSlice';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-type Graph = { data: { id?: string; source?: string; target?: string; label?: string } };
+type Graph = {
+  data: {
+    id?: string;
+    source?: string;
+    target?: string;
+    label?: string;
+    type: string;
+    peerId?: string;
+  };
+};
 interface State {
   graph: Graph[];
   selectedId: string | null;

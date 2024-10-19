@@ -1,7 +1,7 @@
 import Avatar from 'boring-avatars';
 import Cytoscape from 'cytoscape';
 import { useEffect, useRef } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
+
 import { useGraph } from '@/hooks/useGraph';
 import { CytoscapeComponent } from '@/shared/ui';
 function getLayoutOption(layout: string) {
@@ -17,7 +17,7 @@ function getLayoutOption(layout: string) {
 
 function Graph() {
   const cyref = useRef<Cytoscape.Core | null>(null);
-  const { elements, tapEventHandler, backgroundTapEventHandler, selectedLabel } = useGraph();
+  const { elements, tapEventHandler, initCytoscape, selectedLabel } = useGraph();
 
   const changeLayout = (layout: string) => {
     if (!cyref.current) return;
@@ -49,38 +49,7 @@ function Graph() {
         elements={elements}
         cy={(cy: Cytoscape.Core) => {
           cyref.current = cy;
-          cy.removeAllListeners();
-          cy.on('tap', 'node', tapEventHandler);
-          cy.on('tap', function (evt) {
-            if (evt.target === cy) {
-              backgroundTapEventHandler(evt);
-            }
-          });
-          cy.style([
-            {
-              selector: 'node[label]',
-              css: {
-                shape: 'ellipse',
-                content: 'data(label)',
-                'background-image': (elm) => {
-                  const data = elm.data();
-                  if (data.type !== 'User') return undefined;
-                  const svgString = encodeURIComponent(
-                    renderToStaticMarkup(
-                      <Avatar
-                        size={40}
-                        name={data.peerId}
-                        variant="beam"
-                        colors={['#FFBD87', '#FFD791', '#F7E8A6', '#D9E8AE', '#BFE3C0']}
-                      />,
-                    ),
-                  );
-                  const dataUri = `data:image/svg+xml,${svgString}`;
-                  return dataUri;
-                },
-              },
-            },
-          ]);
+          initCytoscape(cy);
         }}
         layout={{ name: 'preset' }}
         wheelSensitivity={0.1}
