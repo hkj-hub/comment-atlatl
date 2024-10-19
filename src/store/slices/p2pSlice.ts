@@ -26,8 +26,8 @@ export const joinP2PRoomAction = createAsyncThunk<
       const message = json.message;
       const force = getForce(message);
       simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
-      const msg = createMessage(message);
-      thunkAPI.dispatch(addMessage(msg));
+      console.log('json', json);
+      thunkAPI.dispatch(addMessage(json));
       thunkAPI.dispatch(createCommentNodeAction(json));
     });
 
@@ -71,7 +71,11 @@ export const sendMessageAction = createAsyncThunk<
   thunkAPI.dispatch(addMessage(msg));
   const state = thunkAPI.getState();
   if (!state.p2p.peerId) return;
-  const messagePayload = { ...msg, peerId: state.p2p.peerId };
+  const messagePayload = {
+    ...msg,
+    peerId: state.p2p.peerId,
+    toCommentId: state.graphState.selectedId,
+  };
   sendMessage(JSON.stringify(messagePayload));
   thunkAPI.dispatch(createCommentNodeAction(messagePayload));
 });

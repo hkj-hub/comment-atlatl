@@ -43,7 +43,8 @@ export const createUserNodeAction = createAsyncThunk<
   { dispatch: AppDispatch; state: RootState }
 >('createUserNodeAction', async (peerId, thunkAPI) => {
   await createUserNode(peerId);
-  const graph = await getGraphdbCytoscape();
+  const state = thunkAPI.getState();
+  const graph = await getGraphdbCytoscape(state.p2p.peerId);
   thunkAPI.dispatch(graphSlice.actions.setGraph(graph));
 });
 export const createCommentNodeAction = createAsyncThunk<
@@ -51,8 +52,9 @@ export const createCommentNodeAction = createAsyncThunk<
   MessagePaylad,
   { dispatch: AppDispatch; state: RootState }
 >('createCommentNodeAction', async (req, thunkAPI) => {
-  await createCommentNode(req, thunkAPI.getState().graphState.selectedId);
-  const graph = await getGraphdbCytoscape();
+  await createCommentNode(req);
+  const state = thunkAPI.getState();
+  const graph = await getGraphdbCytoscape(state.p2p.peerId);
   thunkAPI.dispatch(graphSlice.actions.setGraph(graph));
 });
 

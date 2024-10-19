@@ -36,17 +36,21 @@ const toRel = ({ r }: { r: DBRelResult }) => ({
   },
   selectable: false,
 });
-export const getGraphdbCytoscape = async () => {
+export const getGraphdbCytoscape = async (self: string) => {
   const conn = await getGraphDbClient();
   const nodesResult = await conn.execute('MATCH (n) RETURN (n)');
   const nodes = getQuueryData(nodesResult);
   const relsResult = await conn.execute(
-    'MATCH (a:User)-[r:Has]->(c:Comment) WHERE COUNT { MATCH (c)-[:Res]->() } = 0 RETURN (r)',
+    `MATCH (a:User)-[r:Has]->(c:Comment)  WHERE COUNT { MATCH (c)-[:Res]->() } = 0 RETURN (r)`,
   );
   const rels = getQuueryData(relsResult);
   const commentRelsResult = await conn.execute('MATCH (a:Comment)-[r:Res]->(c:Comment) RETURN (r)');
   const commentRels = getQuueryData(commentRelsResult);
   const nodeData = nodes.map(({ n }: { n: DBNodeResult }) => createNode(n));
+  const otherUserRelsResult = await conn.execute(
+    `MATCH (a:User)-[r:Has]->(:Comment)-[:Res]->(:Comment) WHERE a.peerId <> '${self}' RETURN (r)`,
+  );
+  const otherUserRels = getQuueryData(otherUserRelsResult);
 
-  return [...nodeData, ...rels.map(toRel), ...commentRels.map(toRel)];
+  return [...nodeData, ...rels.map(toRel), ...commentRels.map(toRel), ...otherUserRels.map(toRel)];
 };

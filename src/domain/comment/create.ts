@@ -16,7 +16,7 @@ export const createUserNode = async (peerId: string) => {
   const conn = await getGraphDbClient();
   await conn.execute(`CREATE (u:User {peerId: '${peerId}'});`);
 };
-export const createCommentNode = async (msg: MessagePaylad, toCommentId?: string | null) => {
+export const createCommentNode = async (msg: MessagePaylad) => {
   const conn = await getGraphDbClient();
   await conn.execute(`CREATE (u:User {peerId: '${msg.peerId}'});`);
   await conn.execute(
@@ -28,10 +28,10 @@ WHERE u.peerId = '${msg.peerId}' AND c.id = '${msg.id}'
 CREATE (u)-[:Has]->(c);`,
   );
 
-  if (toCommentId) {
+  if (msg.toCommentId) {
     await conn.execute(
       `MATCH (s:Comment), (d:Comment)
-        WHERE s.id = '${msg.id}' AND d.id = '${toCommentId}'
+        WHERE s.id = '${msg.id}' AND d.id = '${msg.toCommentId}'
         CREATE (s)-[:Res]->(d);`,
     );
   }
