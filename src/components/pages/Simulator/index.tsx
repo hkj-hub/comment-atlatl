@@ -1,7 +1,7 @@
 import React from 'react';
-import Simulator from './Simulator';
-import History from './History';
 import { FaGithub } from 'react-icons/fa6';
+import { History } from '../../../entities/history';
+import Simulator from './Simulator';
 
 const Simulators: React.FC = () => {
   return (

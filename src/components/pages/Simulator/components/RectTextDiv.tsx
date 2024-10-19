@@ -1,4 +1,3 @@
-import { positionToScale, toDegree } from '../../../../domain/simulator/calc';
 
 export function RectTextDiv(props: {
   fontSize: number;

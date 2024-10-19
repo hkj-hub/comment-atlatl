@@ -1,6 +1,7 @@
+/* eslint-disable sonarjs/new-cap */
 import { roomName } from './constants';
-import { getToken } from './token';
 import { getDataStream, subscribeAndAttach } from './repository';
+import { getToken } from './token';
 
 export const joinRoom = async (
   receiveHandler: (s: string) => void,

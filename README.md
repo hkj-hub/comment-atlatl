@@ -3,6 +3,8 @@
 Anyone wants to comment.
 A project that wants to make such a mechanism.
 
+[Japanese Readme](./README-ja.md)
+
 [developper documents](https://hkj-hub.github.io/comment-atlatl/ja/introduction/)
 
 [demo](https://comment-atlatl.vercel.app/)

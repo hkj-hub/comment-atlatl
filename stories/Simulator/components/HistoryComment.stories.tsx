@@ -1,5 +1,5 @@
 import ViewerBaseWrapper from '@/components/pages/Simulator/BaseWrapper';
-import HistoryComment from '@/components/pages/Simulator/components/History/HistoryComment';
+import HistoryComment from '@/entities/history/ui/History/HistoryComment';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

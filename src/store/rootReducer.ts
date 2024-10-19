@@ -1,14 +1,20 @@
-import { AnyAction, combineReducers } from '@reduxjs/toolkit';
-import { simulatorSlice } from './slices/simulatorSlice';
-import { p2pSlice } from './slices/p2pSlice';
+import { combineReducers } from '@reduxjs/toolkit';
+import { graphSlice } from './slices/graphSlice';
 import { messageSlice } from './slices/messageSlice';
+import { p2pSlice } from './slices/p2pSlice';
+import { simulatorSlice } from './slices/simulatorSlice';
+import type { UnknownAction } from '@reduxjs/toolkit';
 
 const combinedReducer = combineReducers({
   message: messageSlice.reducer,
   simulator: simulatorSlice.reducer,
   p2p: p2pSlice.reducer,
+  [graphSlice.reducerPath]: graphSlice.reducer,
 });
-export const rootReducer = (state: any, action: AnyAction) => {
+
+type CombinedState = ReturnType<typeof combinedReducer>;
+
+export const rootReducer = (state: CombinedState | undefined, action: UnknownAction) => {
   return combinedReducer(state, action);
 };
 

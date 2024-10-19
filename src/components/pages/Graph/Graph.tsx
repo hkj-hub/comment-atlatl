@@ -1,0 +1,49 @@
+import Cytoscape from 'cytoscape';
+import { useRef } from 'react';
+import { useGraph } from '@/hooks/useGraph';
+import { CytoscapeComponent } from '@/shared/ui';
+
+function getLayoutOption(layout: string) {
+  const base = { name: layout, fit: false };
+  if (layout === 'cose') {
+    return { ...base, animate: false };
+  }
+  if (layout === 'grid' || layout === 'random') {
+    return { ...base, fit: true };
+  }
+  return base;
+}
+
+function Graph() {
+  const cyref = useRef<Cytoscape.Core | null>(null);
+  const { elements } = useGraph();
+
+  const changeLayout = (layout: string) => {
+    if (!cyref.current) return;
+    cyref.current.layout(getLayoutOption(layout)).run();
+  };
+  return (
+    <div>
+      <div>
+        整列:
+        <button onClick={() => changeLayout('breadthfirst')}>breadthfirst</button>
+        <button onClick={() => changeLayout('circle')}>circle</button>
+        <button onClick={() => changeLayout('concentric')}>concentric</button>
+        <button onClick={() => changeLayout('cose')}>cose</button>
+        <button onClick={() => changeLayout('grid')}>grid</button>
+        <button onClick={() => changeLayout('random')}>random</button>
+      </div>
+      <CytoscapeComponent
+        elements={elements}
+        cy={(cy) => {
+          cyref.current = cy;
+        }}
+        layout={{ name: 'preset' }}
+        wheelSensitivity={0.1}
+        style={{ width: '600px', height: '600px' }}
+      />
+    </div>
+  );
+}
+
+export default Graph;

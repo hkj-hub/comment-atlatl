@@ -17,6 +17,7 @@ export default function ViewerBaseWrapper(props: {
       h / 2 - borderWidth / 2
     }px, #000 , transparent ${h / 2 + borderWidth / 2}px, transparent)`;
   return (
+    // eslint-disable-next-line sonarjs/mouse-events-a11y
     <div
       style={{
         width: `${w}px`,

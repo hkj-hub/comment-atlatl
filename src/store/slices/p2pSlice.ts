@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AppDispatch, RootState } from '../store';
-import { joinRoom } from '../../domain/skyway/room';
-import { sendMessage } from '../../domain/skyway/repository';
-import { getForce } from '../../domain/simulator/force';
-import { simulator } from '../../domain/simulator';
-import { addMessage } from './messageSlice';
 import { v4 as uuidv4 } from 'uuid'; // uuidをインポート
+import { initDb } from '@/domain/comment';
+import { simulator } from '../../domain/simulator';
+import { getForce } from '../../domain/simulator/force';
+import { sendMessage } from '../../domain/skyway/repository';
+import { joinRoom } from '../../domain/skyway/room';
+import { AppDispatch, RootState } from '../store';
+import { createCommentNodeAction, createUserNodeAction } from './graphSlice';
+import { addMessage } from './messageSlice';
 
 const createMessage = (message: string) => ({
   id: uuidv4(),
@@ -13,21 +15,34 @@ const createMessage = (message: string) => ({
   timestamp: new Date().toString(),
 });
 
-export const joinP2PRoomAction = createAsyncThunk<string | null, void, { dispatch: AppDispatch }>(
-  'joinP2PRoomAction',
-  async (_req, thunkAPI) => {
-    try {
-      const id = await joinRoom((message) => {
-        const force = getForce(message);
-        simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
-        thunkAPI.dispatch(addMessage(createMessage(message)));
-      });
-      return id;
-    } catch (error: any) {
+export const joinP2PRoomAction = createAsyncThunk<
+  string | null | undefined,
+  void,
+  { dispatch: AppDispatch }
+>('joinP2PRoomAction', async (_req, thunkAPI) => {
+  try {
+    const peerId = await joinRoom((messagePayload) => {
+      const json = JSON.parse(messagePayload);
+      const message = json.message;
+      const force = getForce(message);
+      simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
+      const msg = createMessage(message);
+      thunkAPI.dispatch(addMessage(msg));
+      thunkAPI.dispatch(createCommentNodeAction(json));
+    });
+
+    if (peerId) {
+      await initDb();
+      // 自分という特別ユーザーを作成
+      thunkAPI.dispatch(createUserNodeAction(peerId));
+    }
+    return peerId;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
       return thunkAPI.rejectWithValue({ error: error.message });
     }
-  },
-);
+  }
+});
 interface P2PState {
   peerId: string;
 }
@@ -52,8 +67,11 @@ export const sendMessageAction = createAsyncThunk<
   string,
   { dispatch: AppDispatch; state: RootState }
 >('sendMessageAction', async (req, thunkAPI) => {
-  thunkAPI.dispatch(addMessage(createMessage(req)));
+  const msg = createMessage(req);
+  thunkAPI.dispatch(addMessage(msg));
   const state = thunkAPI.getState();
   if (!state.p2p.peerId) return;
-  sendMessage(req);
+  const messagePayload = { ...msg, peerId: state.p2p.peerId };
+  sendMessage(JSON.stringify(messagePayload));
+  thunkAPI.dispatch(createCommentNodeAction(messagePayload));
 });
