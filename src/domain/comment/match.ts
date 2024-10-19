@@ -36,12 +36,17 @@ const toRel = ({ r }: { r: DBRelResult }) => ({
   },
   selectable: false,
 });
-export const getGraphdbCytoscape = async () => {
+export const getGraphdbCytoscape = async (self: string) => {
   const conn = await getGraphDbClient();
   const nodesResult = await conn.execute('MATCH (n) RETURN (n)');
   const nodes = getQuueryData(nodesResult);
   const relsResult = await conn.execute(
-    'MATCH (a:User)-[r:Has]->(c:Comment) WHERE COUNT { MATCH (c)-[:Res]->() } = 0 RETURN (r)',
+    `MATCH (a:User)-[r:Has]->(c:Comment)
+        WHERE COUNT {
+          MATCH (c)-[:Res]->(o:Comment)
+           WHERE o.peerId = a.peerId
+        } = 0
+    RETURN (r)`,
   );
   const rels = getQuueryData(relsResult);
   const commentRelsResult = await conn.execute('MATCH (a:Comment)-[r:Res]->(c:Comment) RETURN (r)');
