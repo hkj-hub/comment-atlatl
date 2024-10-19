@@ -1,6 +1,6 @@
-import Simulator from '@/components/pages/Simulator/Simulator';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import Simulator from '@/components/pages/Simulator/Simulator';
 
 // // モック作成準備
 import * as SimulatorHooks from '@/hooks/simulatorHooks';

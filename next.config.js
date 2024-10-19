@@ -1,4 +1,5 @@
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -12,7 +13,12 @@ const nextConfig = {
     config.resolve.alias['@'] = path.join(__dirname, 'src');
 
     // kuzu-wasm の mjs ファイルを読み込むための設定
-    config.optimization.minimizer = [];
+    config.optimization.minimizer = [
+      // https://vercel.live/_next-live/feedback/feedback.js が ERR_BLOCKED_BY_RESPONSE.NotSameOriginAfterDefaultedToSameOriginByCoep になったのでいったんコメントアウト
+      // new TerserPlugin({
+      //   exclude: /kuzu-wasm/,
+      // }),
+    ];
 
     return config;
   },
