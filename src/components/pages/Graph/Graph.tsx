@@ -1,8 +1,9 @@
+import Avatar from 'boring-avatars';
 import Cytoscape from 'cytoscape';
 import { useEffect, useRef } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { useGraph } from '@/hooks/useGraph';
 import { CytoscapeComponent } from '@/shared/ui';
-
 function getLayoutOption(layout: string) {
   const base = { name: layout, fit: false };
   if (layout === 'cose') {
@@ -28,6 +29,12 @@ function Graph() {
   }, [elements]);
   return (
     <div>
+      <Avatar
+        size={40}
+        name="Hoge Huga"
+        variant="beam"
+        colors={['#FFBD87', '#FFD791', '#F7E8A6', '#D9E8AE', '#BFE3C0']}
+      />
       <div>
         整列:
         <button onClick={() => changeLayout('breadthfirst')}>breadthfirst</button>
@@ -49,6 +56,31 @@ function Graph() {
               backgroundTapEventHandler(evt);
             }
           });
+          cy.style([
+            {
+              selector: 'node[label]',
+              css: {
+                shape: 'ellipse',
+                content: 'data(label)',
+                'background-image': (elm) => {
+                  const data = elm.data();
+                  if (data.type !== 'User') return undefined;
+                  const svgString = encodeURIComponent(
+                    renderToStaticMarkup(
+                      <Avatar
+                        size={40}
+                        name={data.peerId}
+                        variant="beam"
+                        colors={['#FFBD87', '#FFD791', '#F7E8A6', '#D9E8AE', '#BFE3C0']}
+                      />,
+                    ),
+                  );
+                  const dataUri = `data:image/svg+xml,${svgString}`;
+                  return dataUri;
+                },
+              },
+            },
+          ]);
         }}
         layout={{ name: 'preset' }}
         wheelSensitivity={0.1}

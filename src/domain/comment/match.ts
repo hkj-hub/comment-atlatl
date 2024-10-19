@@ -19,12 +19,12 @@ const createNode = (n: DBNodeResult) => {
   const data = { id: getId(n._ID), label: getLabel(n), type: n._LABEL };
   if (n._LABEL === 'User') {
     return {
-      data,
+      data: { ...data, peerId: n.peerId },
       selectable: false,
     };
   }
   return {
-    data: { ...data, commentId: n.id },
+    data: { ...data, commentId: n.id, shape: 'triangle' },
   };
 };
 const toRel = ({ r }: { r: DBRelResult }) => ({
