@@ -3,7 +3,29 @@ import Cytoscape from 'cytoscape';
 import { useState } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { graphSelector, graphSlice } from '@/store/slices/graphSlice';
+import { GraphDataFromKuzu, graphSelector, graphSlice } from '@/store/slices/graphSlice';
+
+const createCytoscapeStyle = (e: GraphDataFromKuzu) => ({
+  selector: `node#${e.data.id}`,
+  css: {
+    content: 'data(label)',
+    'background-image': (elm: Cytoscape.CoreData) => {
+      const data = elm.data();
+      const svgString = encodeURIComponent(
+        renderToStaticMarkup(
+          Avatar({
+            size: 40,
+            name: data.peerId,
+            variant: 'beam',
+            colors: ['#FFBD87', '#FFD791', '#F7E8A6', '#D9E8AE', '#BFE3C0'],
+          }),
+        ),
+      );
+      const dataUri = `data:image/svg+xml,${svgString}`;
+      return dataUri;
+    },
+  },
+});
 
 export const useGraph = () => {
   const [selectedLabel, setSelectedLabel] = useState<string | null>(null);
@@ -32,31 +54,15 @@ export const useGraph = () => {
         backgroundTapEventHandler();
       }
     });
-    cy.style(
-      elements
-        .filter((e) => e.data.type === 'User')
-        .map((e) => ({
-          selector: `node#${e.data.id}`,
-          css: {
-            content: 'data(label)',
-            'background-image': (elm) => {
-              const data = elm.data();
-              const svgString = encodeURIComponent(
-                renderToStaticMarkup(
-                  Avatar({
-                    size: 40,
-                    name: data.peerId,
-                    variant: 'beam',
-                    colors: ['#FFBD87', '#FFD791', '#F7E8A6', '#D9E8AE', '#BFE3C0'],
-                  }),
-                ),
-              );
-              const dataUri = `data:image/svg+xml,${svgString}`;
-              return dataUri;
-            },
-          },
-        })),
-    );
+    cy.style([
+      {
+        selector: 'node',
+        css: {
+          content: 'data(label)',
+        },
+      },
+      ...elements.filter((e) => e.data.type === 'User').map(createCytoscapeStyle),
+    ]);
   };
   return { elements, tapEventHandler, selectedLabel, initCytoscape };
 };

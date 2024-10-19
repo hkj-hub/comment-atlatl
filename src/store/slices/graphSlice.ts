@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { createCommentNode, createUserNode, getGraphdbCytoscape } from '@/domain/comment';
-import { AppDispatch, RootState } from '../store';
 import { MessagePaylad } from './messageSlice';
+import type { AppDispatch, RootState } from '../store';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-type Graph = {
+export type GraphDataFromKuzu = {
   data: {
     id?: string;
     source?: string;
@@ -15,7 +15,7 @@ type Graph = {
   };
 };
 interface State {
-  graph: Graph[];
+  graph: GraphDataFromKuzu[];
   selectedId: string | null;
 }
 
@@ -28,7 +28,7 @@ export const graphSlice = createSlice({
   name: 'graphState',
   initialState,
   reducers: {
-    setGraph: (state, action: PayloadAction<Graph[]>) => {
+    setGraph: (state, action: PayloadAction<GraphDataFromKuzu[]>) => {
       state.graph = action.payload;
     },
     setSelectedId: (state, action: PayloadAction<string | null>) => {

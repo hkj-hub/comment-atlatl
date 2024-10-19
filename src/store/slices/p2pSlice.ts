@@ -1,13 +1,13 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid'; // uuidをインポート
 import { initDb } from '@/domain/comment';
 import { simulator } from '../../domain/simulator';
 import { getForce } from '../../domain/simulator/force';
 import { sendMessage } from '../../domain/skyway/repository';
 import { joinRoom } from '../../domain/skyway/room';
-import { AppDispatch, RootState } from '../store';
 import { createCommentNodeAction, createUserNodeAction } from './graphSlice';
 import { addMessage } from './messageSlice';
+import type { AppDispatch, RootState } from '../store';
 
 const createMessage = (message: string) => ({
   id: uuidv4(),
@@ -74,4 +74,9 @@ export const sendMessageAction = createAsyncThunk<
   const messagePayload = { ...msg, peerId: state.p2p.peerId };
   sendMessage(JSON.stringify(messagePayload));
   thunkAPI.dispatch(createCommentNodeAction(messagePayload));
+});
+const stateSelector = (state: RootState) => state[p2pSlice.reducerPath];
+
+export const peerIdSelector = createSelector(stateSelector, (c) => {
+  return c.peerId;
 });

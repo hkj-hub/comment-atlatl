@@ -1,4 +1,3 @@
-import Avatar from 'boring-avatars';
 import Cytoscape from 'cytoscape';
 import { useEffect, useRef } from 'react';
 
@@ -17,7 +16,7 @@ function getLayoutOption(layout: string) {
 
 function Graph() {
   const cyref = useRef<Cytoscape.Core | null>(null);
-  const { elements, tapEventHandler, initCytoscape, selectedLabel } = useGraph();
+  const { elements, initCytoscape, selectedLabel } = useGraph();
 
   const changeLayout = (layout: string) => {
     if (!cyref.current) return;
@@ -29,12 +28,6 @@ function Graph() {
   }, [elements]);
   return (
     <div>
-      <Avatar
-        size={40}
-        name="Hoge Huga"
-        variant="beam"
-        colors={['#FFBD87', '#FFD791', '#F7E8A6', '#D9E8AE', '#BFE3C0']}
-      />
       <div>
         整列:
         <button onClick={() => changeLayout('breadthfirst')}>breadthfirst</button>
