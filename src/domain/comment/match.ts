@@ -15,6 +15,17 @@ const getLabel = (n: DBNodeResult) => {
   if (n._LABEL === 'User') return n.peerId.slice(0, 4);
   return n.message;
 };
+const createNode = (n: DBNodeResult) => {
+  if (n._LABEL === 'User') {
+    return {
+      data: { id: getId(n._ID), label: getLabel(n), type: n._LABEL },
+      selectable: false,
+    };
+  }
+  return {
+    data: { id: getId(n._ID), label: getLabel(n), type: n._LABEL },
+  };
+};
 export const getGraphdbCytoscape = async () => {
   const conn = await getGraphDbClient();
   const nodesResult = await conn.execute('MATCH (n) RETURN (n)');
@@ -23,9 +34,7 @@ export const getGraphdbCytoscape = async () => {
   const relsResult = await conn.execute('MATCH (a:User)-[r:Has]->(c:Comment) RETURN (r)');
   const rels = getQuueryData(relsResult);
 
-  const nodeData = nodes.map(({ n }: { n: DBNodeResult }) => ({
-    data: { id: getId(n._ID), label: getLabel(n), type: n._LABEL },
-  }));
+  const nodeData = nodes.map(({ n }: { n: DBNodeResult }) => createNode(n));
   const relData = rels.map(({ r }: { r: DBRelResult }) => ({
     data: {
       source: getId(r._SRC),
