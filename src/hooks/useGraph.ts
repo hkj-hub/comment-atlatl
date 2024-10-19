@@ -1,5 +1,6 @@
 import Cytoscape from 'cytoscape';
 import { useState } from 'react';
+import { featureFlag } from '@/app/featureFlag';
 import { createCytoscapeStyle } from '@/domain/identicon/createCytoscapeStyle';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { graphSelector, graphSlice } from '@/store/slices/graphSlice';
@@ -31,17 +32,20 @@ export const useGraph = () => {
         backgroundTapEventHandler();
       }
     });
-    cy.style([
-      {
-        selector: 'node',
-        css: {
-          content: 'data(label)',
-          width: 20,
-          height: 20,
-        },
-      },
-      ...elements.filter((e) => e.data.type === 'User').map(createCytoscapeStyle),
-    ]);
+    const style = featureFlag.useUserFeature
+      ? [
+          {
+            selector: 'node',
+            css: {
+              content: 'data(label)',
+              width: 20,
+              height: 20,
+            },
+          },
+          ...elements.filter((e) => e.data.type === 'User').map(createCytoscapeStyle),
+        ]
+      : elements.map(createCytoscapeStyle);
+    cy.style(style);
   };
   return { elements, tapEventHandler, selectedLabel, initCytoscape };
 };

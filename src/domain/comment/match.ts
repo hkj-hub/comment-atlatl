@@ -1,9 +1,10 @@
+import { featureFlag } from '@/app/featureFlag';
 import { getGraphDbClient } from '@/shared/lib';
 import { MessagePaylad } from '@/store/slices/messageSlice';
-import type { QueryResult } from '@kuzu/kuzu-wasm';
+import type { Connection, QueryResult } from '@kuzu/kuzu-wasm';
 
 type ID = { offset: string; table: string };
-const getQuueryData = (result: QueryResult) => {
+const getQueryData = (result: QueryResult) => {
   if (!result.table) return [];
   return JSON.parse(result.table.toString());
 };
@@ -24,7 +25,7 @@ const createNode = (n: DBNodeResult) => {
     };
   }
   return {
-    data: { ...data, commentId: n.id, shape: 'triangle' },
+    data: { ...data, commentId: n.id, peerId: n.peerId },
   };
 };
 const toRel = ({ r }: { r: DBRelResult }) => ({
@@ -36,10 +37,16 @@ const toRel = ({ r }: { r: DBRelResult }) => ({
   },
   selectable: false,
 });
-export const getGraphdbCytoscape = async (self: string) => {
-  const conn = await getGraphDbClient();
-  const nodesResult = await conn.execute('MATCH (n) RETURN (n)');
-  const nodes = getQuueryData(nodesResult);
+async function getNode(conn: Connection) {
+  if (featureFlag.useUserFeature) {
+    return conn.execute('MATCH (n) RETURN (n)');
+  }
+  return conn.execute('MATCH (n:Comment) RETURN (n)');
+}
+async function getUserRelation(conn: Connection) {
+  if (!featureFlag.useUserFeature) {
+    return { table: undefined } as unknown as QueryResult;
+  }
   const relsResult = await conn.execute(
     `MATCH (a:User)-[r:Has]->(c:Comment)
         WHERE COUNT {
@@ -48,9 +55,16 @@ export const getGraphdbCytoscape = async (self: string) => {
         } = 0
     RETURN (r)`,
   );
-  const rels = getQuueryData(relsResult);
+  return relsResult;
+}
+export const getGraphdbCytoscape = async () => {
+  const conn = await getGraphDbClient();
+  const nodesResult = await getNode(conn);
+  const nodes = getQueryData(nodesResult);
+  const relsResult = await getUserRelation(conn);
+  const rels = getQueryData(relsResult);
   const commentRelsResult = await conn.execute('MATCH (a:Comment)-[r:Res]->(c:Comment) RETURN (r)');
-  const commentRels = getQuueryData(commentRelsResult);
+  const commentRels = getQueryData(commentRelsResult);
   const nodeData = nodes.map(({ n }: { n: DBNodeResult }) => createNode(n));
 
   return [...nodeData, ...rels.map(toRel), ...commentRels.map(toRel)];
