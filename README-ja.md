@@ -73,7 +73,7 @@ vscode の拡張を利用し、保存時に autofix される設定とする。
 .vscode/extensions.json ... lint拡張プラグインのおすすめ
 .vscode/settings.json   ... 保存時に自動でlint fixを行うための設定込
 .editorconfig           ... 改行コードをlinux準拠のLFに。インデントを2に。
-.eslintrc.cjs           ... eslintの設定
+.eslint.config.mjs      ... eslintの設定
 .prettierignore         ... prettier用の設定
 .prettierrc             ... prettier用の設定。セミコロン必須。末尾カンマ必須。
 ```
