@@ -45,6 +45,11 @@ const nextConfig = {
       },
     ];
   },
+  // https://ja.next-community-docs.dev/docs/app/api-reference/next-config-js/eslint
+  // https://blog.linotte.dev/eslint-9-next-js-935c2b6d0371
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
 };
 
 module.exports = nextConfig;
