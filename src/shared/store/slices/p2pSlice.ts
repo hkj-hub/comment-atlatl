@@ -7,7 +7,6 @@ import { sendMessage } from '../../domain/skyway/repository';
 import { joinRoom } from '../../domain/skyway/room';
 import { createCommentNodeAction, createUserNodeAction } from './graphSlice';
 import { addMessage } from './messageSlice';
-import type { AppDispatch, RootState } from '../store';
 
 const createMessage = (message: string) => ({
   id: uuidv4(),

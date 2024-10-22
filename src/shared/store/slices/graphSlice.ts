@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { createCommentNode, createUserNode, getGraphdbCytoscape } from '../../domain/comment';
 import { MessagePaylad } from './messageSlice';
-import type { AppDispatch, RootState } from '../store';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 export type GraphDataFromKuzu = {

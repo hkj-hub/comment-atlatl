@@ -2,10 +2,12 @@
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { joinP2PRoomAction } from '@/shared/store/slices/p2pSlice';
-import { store } from '@/shared/store/store';
+import { store } from '@/app/store';
+
 if (global.window) {
   store.dispatch(joinP2PRoomAction());
 }
+
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
