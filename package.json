@@ -13,7 +13,8 @@
     "test": "jest --config ./jest.config.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o ./docs/astro/public/comment-atlatl-components",
-    "build-diagrams": "cd docs/diagrams && python deploy.py"
+    "build-diagrams": "cd docs/diagrams && python deploy.py",
+    "depcruise": "npx depcruise src --include-only \"^src\" --output-type dot | dot -T svg > dependency-graph.svg"
   },
   "dependencies": {
     "@dimforge/rapier2d": "^0.14.0",
@@ -49,6 +50,7 @@
     "@types/react-dom": "^18.3.1",
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/parser": "^8.10.0",
+    "dependency-cruiser": "^16.4.2",
     "dotenv": "^16.4.5",
     "eslint": "9.13.0",
     "eslint-config-prettier": "^9.1.0",
