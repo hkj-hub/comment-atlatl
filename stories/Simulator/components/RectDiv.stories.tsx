@@ -1,5 +1,5 @@
-import ViewerBaseWrapper from '@/components/pages/Simulator/BaseWrapper';
-import RectDiv from '@/components/pages/Simulator/components/RectDiv';
+import ViewerBaseWrapper from '@/pages/Simulator/ui/BaseWrapper';
+import RectDiv from '@/pages/Simulator/ui/components/RectDiv';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

@@ -1,7 +1,8 @@
+// eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { joinP2PRoomAction } from '@/store/slices/p2pSlice';
-import { store } from '@/store/store';
+import { joinP2PRoomAction } from '@/shared/store/slices/p2pSlice';
+import { store } from '@/shared/store/store';
 if (global.window) {
   store.dispatch(joinP2PRoomAction());
 }

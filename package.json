@@ -29,6 +29,7 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
+    "@conarti/eslint-plugin-feature-sliced": "^1.0.5",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.13.0",
     "@skyway-sdk/room": "^1.10.0",
@@ -62,6 +63,6 @@
     "npm-check-updates": "^17.1.4",
     "storybook": "^8.3.6",
     "typescript": "^5.6.3",
-    "typescript-eslint": "^8.10.0"
+    "typescript-eslint": "^8.11.0"
   }
 }
