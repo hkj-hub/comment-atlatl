@@ -65,6 +65,7 @@ bin       ... 実行ファイル用
 docs      ... GithubPages用のドキュメント
 src       ... Next.js のソース / FSD
 pages     ... Next.js のソース / routing
+types     ... グローバルに利用する型。乱用注意
 ```
 
 #### lint 設定ファイル
