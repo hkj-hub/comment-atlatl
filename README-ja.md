@@ -55,13 +55,16 @@ http://localhost:3000/ で開発サーバがローカルに立ち上がる。
 
 #### ディレクトリ
 
+[FSD-with-nextjs](https://feature-sliced.design/docs/guides/tech/with-nextjs)の構成とする
+
 ```
 .githooks ... Git Hooks用
 .github   ... GithubPages公開用のアクションを格納
 .vscode   ... vscodeの設定
 bin       ... 実行ファイル用
 docs      ... GithubPages用のドキュメント
-src       ... Next.js のソース
+src       ... Next.js のソース / FSD
+pages     ... Next.js のソース / routing
 ```
 
 #### lint 設定ファイル

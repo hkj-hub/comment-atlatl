@@ -22,9 +22,15 @@ export default tseslint.config({
     ...compat.extends('plugin:storybook/recommended'),
     ...compat.extends('plugin:import/recommended'),
     ...compat.extends('plugin:sonarjs/recommended-legacy'),
+    ...compat.extends(
+      'plugin:@conarti/eslint-plugin-feature-sliced/recommended',
+    ),
     prettierConfig,
   ],
-  plugins: { 'unused-imports': unuserdPlugin, sonarjs },
+  plugins: {
+    'unused-imports': unuserdPlugin,
+    sonarjs,
+  },
   rules: {
     semi: ['error', 'always'],
     complexity: ['error', 7], // 複雑度の設定

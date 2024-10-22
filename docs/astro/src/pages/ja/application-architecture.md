@@ -8,13 +8,13 @@
 
 ## Project の構造
 
-下記を参考に検討している。 結論はまだ出していないが、FSD を Next 用に調整を考えている。2 章を参照。
+下記を参考に検討している。 FSD を Next 用に調整する。
 
-| 手法                                                                                           | 特徴                           |
-| ---------------------------------------------------------------------------------------------- | ------------------------------ |
-| [Feature Sliced Design](https://zenn.dev/kyuki/articles/d736b0957e6336)                        | フロントエンド向けの階層構造   |
-| [Bulletproof-react](https://zenn.dev/ukkyon/articles/03893da1dbf825)                           | バックエンド向けの直観的な構造 |
-| [domain-driven design](https://zenn.dev/yamachan0625/books/ddd-hands-on/viewer/chapter1_intro) | 複雑な業務要件に立ち向かう構造 |
+| 手法                                                                                           | 特徴                                     
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| [Feature Sliced Design](https://zenn.dev/kyuki/articles/d736b0957e6336)                        | フロントエンド向けの階層構造             |
+| [Bulletproof-react](https://zenn.dev/ukkyon/articles/03893da1dbf825)                           | 「特化」と「汎化」を意識した直観的な構造 |
+| [domain-driven design](https://zenn.dev/yamachan0625/books/ddd-hands-on/viewer/chapter1_intro) | 複雑な業務要件に立ち向かう構造           |
 
 ## State の管理
 
