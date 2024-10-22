@@ -1,4 +1,4 @@
-import Simulator from '../components/pages/Simulator';
+import Simulator from '@/components/pages/Simulator';
 
 const IndexPage = () => <Simulator />;
 

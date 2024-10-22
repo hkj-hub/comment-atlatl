@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { joinP2PRoomAction } from '../store/slices/p2pSlice';
-import { store } from '../store/store';
+import { joinP2PRoomAction } from '@/store/slices/p2pSlice';
+import { store } from '@/store/store';
 if (global.window) {
   store.dispatch(joinP2PRoomAction());
 }

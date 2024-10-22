@@ -1,4 +1,4 @@
-import Graph from '../components/pages/Graph';
+import Graph from '@/components/pages/Graph';
 
 const Page = () => <Graph />;
 
