@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { simulateLoop, simulator } from '@/shared/domain/simulator';
 import { getForce } from '@/shared/domain/simulator/force';
 import { formatText } from '@/shared/domain/simulator/format';
-import { useAppDispatch, useAppSelector } from '@/shared/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/shared/store';
 import { textsSelector } from '@/shared/store/selector/simulatorSelector';
 import { sendMessageAction } from '@/shared/store/slices/p2pSlice';
 import { simulatorSlice } from '@/shared/store/slices/simulatorSlice';

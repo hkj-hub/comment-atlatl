@@ -4,7 +4,7 @@ import { InputMessage } from '@/entities/inputMessage';
 import { History } from '@/features/history';
 import { useInputMessageHooks } from '@/pages/Graph/model/useInputMessage';
 import UserAvator from '@/shared/domain/identicon/UserAvatorIcon';
-import { useAppSelector } from '@/shared/store/hooks';
+import { useAppSelector } from '@/shared/store';
 import { peerIdSelector } from '@/shared/store/slices/p2pSlice';
 import Graph from './Graph';
 

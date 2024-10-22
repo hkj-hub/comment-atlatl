@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector } from '@/shared/store/hooks';
+import { useAppSelector } from '@/shared/store';
 import { messageSelector } from '@/shared/store/selector/messageSelector';
 import HistoryComment from './History/HistoryComment';
 

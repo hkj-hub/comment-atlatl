@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { formatText } from '@/shared/domain/simulator/format';
-import { useAppDispatch } from '@/shared/store/hooks';
+import { useAppDispatch } from '@/shared/store';
 import { sendMessageAction } from '@/shared/store/slices/p2pSlice';
 
 export const useInputMessageHooks = () => {
