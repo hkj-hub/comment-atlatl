@@ -16,7 +16,7 @@ const Page: React.FC = () => {
       <UserAvator name={peerId} />
       {peerId.slice(0, 4)}
       <InputMessage setText={setText} addText={addText} addEmotion={addEmotion} text={text} />
-      <div style={{ display: 'flex' }}>
+      <div className="sm:flex">
         <Graph />
         <History />
       </div>

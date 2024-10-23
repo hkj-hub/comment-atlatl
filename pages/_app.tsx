@@ -2,6 +2,7 @@
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { store } from '@/app/store';
+import '@/app/globals.css';
 // eslint-disable-next-line @conarti/feature-sliced/absolute-relative
 import { joinP2PRoomAction } from '@/pages/Simulator';
 
