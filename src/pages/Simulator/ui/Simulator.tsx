@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputMessage } from '@/entities/inputMessage';
-import { simulaterProps } from '@/shared/domain/simulator/constants';
+import { simulaterProps } from '@/pages/Simulator/model/domain/constants';
 import { useSimulatorHooks } from '../model/simulatorHooks';
 import Viewer from './Viewer';
 

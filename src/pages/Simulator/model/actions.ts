@@ -2,9 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addMessage } from '@/entities/message';
 import { p2pSlice } from '@/entities/p2p/p2pSlice';
 import { initDb, createCommentNodeAction, createUserNodeAction } from '@/features/comment';
-import { simulator } from '@/shared/domain/simulator';
-import { getForce } from '@/shared/domain/simulator/force';
 import { joinRoom } from '@/shared/domain/skyway/room';
+import { simulator } from './domain';
+import { getForce } from './domain/force';
 
 export const joinP2PRoomAction = createAsyncThunk<
   string | null | undefined,

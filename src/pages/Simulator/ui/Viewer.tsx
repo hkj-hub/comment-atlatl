@@ -1,7 +1,7 @@
 import React from 'react';
-import { LayerHeight, LayerWidth, SimulaterProps } from '@/shared/domain/simulator/constants';
-import { convertTextPropsRapierToViewer } from '@/shared/domain/simulator/converter';
-import { TextProps } from '@/shared/domain/simulator/types';
+import { LayerHeight, LayerWidth, SimulaterProps } from '@/pages/Simulator/model/domain/constants';
+import { convertTextPropsRapierToViewer } from '@/pages/Simulator/model/domain/converter';
+import { TextProps } from '@/pages/Simulator/model/domain/types';
 import ViewerBaseWrapper from './BaseWrapper';
 import RectDiv from './components/RectDiv';
 import { RectTextDiv } from './components/RectTextDiv';

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { sendMessageAction } from '@/features/comment';
-import { simulateLoop, simulator } from '@/shared/domain/simulator';
-import { getForce } from '@/shared/domain/simulator/force';
-import { formatText } from '@/shared/domain/simulator/format';
 import { useAppDispatch, useAppSelector } from '@/shared/store';
+import { simulateLoop, simulator } from './domain';
+import { getForce } from './domain/force';
+import { formatText } from './domain/format';
 import { textsSelector } from './simulatorSelector';
 import { simulatorSlice } from './simulatorSlice';
 

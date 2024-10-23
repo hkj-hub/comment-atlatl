@@ -1,4 +1,4 @@
-import { formatText } from '@/shared/domain/simulator/format';
+import { formatText } from '@/pages/Simulator/model/domain/format';
 
 describe('formatText', () => {
   test('@が＠に置換されること', () => {
