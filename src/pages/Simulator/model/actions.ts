@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addMessage } from '@/entities/message';
-import { p2pSlice } from '@/entities/p2p/p2pSlice';
+import { p2pSlice } from '@/entities/p2p';
 import { initDb, createCommentNodeAction, createUserNodeAction } from '@/features/comment';
 import { joinRoom } from '@/shared/domain/skyway/room';
 import { simulator } from './domain';

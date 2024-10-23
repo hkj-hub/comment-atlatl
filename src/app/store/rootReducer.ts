@@ -1,7 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { graphSlice } from '@/entities/graph';
 import { messageSlice } from '@/entities/message';
-import { p2pSlice } from '@/entities/p2p/p2pSlice';
+import { p2pSlice } from '@/entities/p2p';
 import { simulatorSlice } from '@/pages/Simulator';
 import type { UnknownAction } from '@reduxjs/toolkit';
 

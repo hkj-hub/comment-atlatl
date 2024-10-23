@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaGithub } from 'react-icons/fa6';
 import { InputMessage } from '@/entities/inputMessage';
-import { peerIdSelector } from '@/entities/p2p/p2pSlice';
+import { peerIdSelector } from '@/entities/p2p';
 import { History } from '@/features/history';
 import { useAppSelector } from '@/shared/store';
 import UserAvator from '@/shared/ui/identicon/UserAvatorIcon';
