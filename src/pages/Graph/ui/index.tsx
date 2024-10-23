@@ -3,7 +3,7 @@ import { FaGithub } from 'react-icons/fa6';
 import { InputMessage } from '@/entities/inputMessage';
 import { peerIdSelector } from '@/entities/p2p';
 import { History } from '@/features/history';
-import { useAppSelector } from '@/shared/store';
+import { useAppSelector } from '@/shared/lib/store';
 import UserAvator from '@/shared/ui/identicon/UserAvatorIcon';
 import { useInputMessageHooks } from '../model/useInputMessage';
 import Graph from './Graph';

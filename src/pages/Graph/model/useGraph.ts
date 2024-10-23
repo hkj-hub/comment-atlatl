@@ -2,7 +2,7 @@ import Cytoscape from 'cytoscape';
 import { useState } from 'react';
 import { graphSelector, graphSlice } from '@/entities/graph';
 import { featureFlag } from '@/shared/config/featureFlag';
-import { useAppDispatch, useAppSelector } from '@/shared/store';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { createCytoscapeStyle } from './createCytoscapeStyle';
 
 export const useGraph = () => {

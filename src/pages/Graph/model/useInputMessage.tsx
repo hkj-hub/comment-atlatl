@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { formatText } from '@/entities/simulator';
 import { sendMessageAction } from '@/features/comment';
-import { useAppDispatch } from '@/shared/store';
+import { useAppDispatch } from '@/shared/lib/store';
 
 export const useInputMessageHooks = () => {
   const dispatch = useAppDispatch();

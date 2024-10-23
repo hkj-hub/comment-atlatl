@@ -8,7 +8,7 @@ import {
   textsSelector,
 } from '@/entities/simulator';
 import { sendMessageAction } from '@/features/comment';
-import { useAppDispatch, useAppSelector } from '@/shared/store';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 
 export const useSimulatorHooks = () => {
   const dispatch = useAppDispatch();
