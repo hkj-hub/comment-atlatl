@@ -1,5 +1,5 @@
-import { getGraphDbClient } from '../../lib';
-import { MessagePaylad } from '../../store/slices/messageSlice';
+import { getGraphDbClient } from '@/shared/lib';
+import type { MessagePaylad } from '@/entities/message';
 
 export const initDb = async () => {
   const conn = await getGraphDbClient();

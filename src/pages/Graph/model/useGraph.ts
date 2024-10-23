@@ -1,9 +1,9 @@
 import Cytoscape from 'cytoscape';
 import { useState } from 'react';
+import { graphSelector, graphSlice } from '@/entities/graph';
 import { featureFlag } from '@/shared/config/featureFlag';
-import { createCytoscapeStyle } from '@/shared/domain/identicon/createCytoscapeStyle';
 import { useAppDispatch, useAppSelector } from '@/shared/store';
-import { graphSelector, graphSlice } from '@/shared/store/slices/graphSlice';
+import { createCytoscapeStyle } from './createCytoscapeStyle';
 
 export const useGraph = () => {
   const [selectedLabel, setSelectedLabel] = useState<string | null>(null);

@@ -1,8 +1,9 @@
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
+/* eslint-disable @conarti/feature-sliced/layers-slices */
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { joinP2PRoomAction } from '@/shared/store/slices/p2pSlice';
 import { store } from '@/app/store';
+// eslint-disable-next-line @conarti/feature-sliced/absolute-relative
+import { joinP2PRoomAction } from '@/pages/Simulator';
 
 if (global.window) {
   store.dispatch(joinP2PRoomAction());

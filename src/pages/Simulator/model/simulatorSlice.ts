@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { TextProps } from '../../domain/simulator/types';
+import { TextProps } from '@/shared/domain/simulator/types';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface SimulatorState {

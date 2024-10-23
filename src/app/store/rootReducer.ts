@@ -1,8 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { graphSlice } from './slices/graphSlice';
-import { messageSlice } from './slices/messageSlice';
-import { p2pSlice } from './slices/p2pSlice';
-import { simulatorSlice } from './slices/simulatorSlice';
+import { graphSlice } from '@/entities/graph';
+import { messageSlice } from '@/entities/message';
+import { p2pSlice } from '@/entities/p2p/p2pSlice';
+import { simulatorSlice } from '@/pages/Simulator';
 import type { UnknownAction } from '@reduxjs/toolkit';
 
 const combinedReducer = combineReducers({

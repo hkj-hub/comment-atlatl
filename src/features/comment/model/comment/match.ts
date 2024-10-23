@@ -1,6 +1,6 @@
-import { featureFlag } from '../../config/featureFlag';
-import { getGraphDbClient } from '../../lib';
-import { MessagePaylad } from '../../store/slices/messageSlice';
+import { featureFlag } from '@/shared/config/featureFlag';
+import { getGraphDbClient } from '@/shared/lib';
+import type { MessagePaylad } from '@/entities/message';
 import type { Connection, QueryResult } from '@kuzu/kuzu-wasm';
 
 type ID = { offset: string; table: string };

@@ -1,7 +1,7 @@
 import Cytoscape from 'cytoscape';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { GraphDataFromKuzu } from '../../store/slices/graphSlice';
-import UserAvatorIcon from './UserAvatorIcon';
+import { GraphDataFromKuzu } from '@/entities/graph';
+import UserAvatorIcon from '@/shared/ui/identicon/UserAvatorIcon';
 
 export const createCytoscapeStyle = (e: GraphDataFromKuzu) => ({
   selector: `node#${e.data.id}`,

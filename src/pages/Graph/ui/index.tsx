@@ -1,11 +1,11 @@
 import React from 'react';
 import { FaGithub } from 'react-icons/fa6';
 import { InputMessage } from '@/entities/inputMessage';
+import { peerIdSelector } from '@/entities/p2p/p2pSlice';
 import { History } from '@/features/history';
-import { useInputMessageHooks } from '@/pages/Graph/model/useInputMessage';
-import UserAvator from '@/shared/domain/identicon/UserAvatorIcon';
 import { useAppSelector } from '@/shared/store';
-import { peerIdSelector } from '@/shared/store/slices/p2pSlice';
+import UserAvator from '@/shared/ui/identicon/UserAvatorIcon';
+import { useInputMessageHooks } from '../model/useInputMessage';
 import Graph from './Graph';
 
 const Page: React.FC = () => {
