@@ -1,8 +1,8 @@
-const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
+import path from 'path';
+import type { NextConfig } from 'next';
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   webpack: (config, { isServer }) => {
     config.experiments = {
