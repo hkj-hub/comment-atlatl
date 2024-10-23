@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import { addMessage } from '@/entities/message';
-import { sendMessage } from '@/shared/domain/skyway/repository';
+import { sendMessage } from '@/entities/p2p/model/skyway/repository';
 import { createCommentNodeAction } from './graph/actions';
 
 const createMessage = (message: string) => ({

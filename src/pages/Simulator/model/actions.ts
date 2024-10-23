@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addMessage } from '@/entities/message';
-import { p2pSlice } from '@/entities/p2p';
+import { p2pSlice, joinRoom } from '@/entities/p2p';
 import { initDb, createCommentNodeAction, createUserNodeAction } from '@/features/comment';
-import { joinRoom } from '@/shared/domain/skyway/room';
 import { simulator } from './domain';
 import { getForce } from './domain/force';
 
@@ -17,7 +16,7 @@ export const joinP2PRoomAction = createAsyncThunk<
       const message = json.message;
       const force = getForce(message);
       simulator.addText({ text: message, position: { x: 200, y: 200 }, force });
-      console.log('json', json);
+
       thunkAPI.dispatch(addMessage(json));
       thunkAPI.dispatch(createCommentNodeAction(json));
     });
