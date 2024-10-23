@@ -1,10 +1,14 @@
 import React from 'react';
-import { LayerHeight, LayerWidth, SimulaterProps } from '@/pages/Simulator/model/domain/constants';
-import { convertTextPropsRapierToViewer } from '@/pages/Simulator/model/domain/converter';
-import { TextProps } from '@/pages/Simulator/model/domain/types';
+import {
+  LayerHeight,
+  LayerWidth,
+  SimulaterProps,
+  convertTextPropsRapierToViewer,
+} from '@/entities/simulator';
 import ViewerBaseWrapper from './BaseWrapper';
 import RectDiv from './components/RectDiv';
 import { RectTextDiv } from './components/RectTextDiv';
+import type { TextProps } from '@/entities/simulator';
 
 const Viewer: React.FC<{ props: SimulaterProps; items: TextProps[] }> = ({ props, items }) => {
   return (

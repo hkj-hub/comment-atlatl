@@ -1,9 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addMessage } from '@/entities/message';
 import { p2pSlice, joinRoom } from '@/entities/p2p';
+import { simulator, getForce } from '@/entities/simulator';
 import { initDb, createCommentNodeAction, createUserNodeAction } from '@/features/comment';
-import { simulator } from './domain';
-import { getForce } from './domain/force';
 
 export const joinP2PRoomAction = createAsyncThunk<
   string | null | undefined,

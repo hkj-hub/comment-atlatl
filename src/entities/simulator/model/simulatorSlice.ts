@@ -11,7 +11,7 @@ const initialState: SimulatorState = {
 };
 
 export const simulatorSlice = createSlice({
-  name: 'simulatorState',
+  name: 'simulator',
   initialState,
   reducers: {
     setTexts: (state, action: PayloadAction<TextProps[]>) => {

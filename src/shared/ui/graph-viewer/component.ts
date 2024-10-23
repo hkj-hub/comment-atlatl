@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Cytoscape from 'cytoscape';
 import React from 'react';
-import { defaults } from '../model/defaults';
-import { patch } from '../model/patch';
-import { types } from '../model/types';
+import { defaults } from './model/defaults';
+import { patch } from './model/patch';
+import { types } from './model/types';
 
 type Props = typeof types & { global?: string };
 

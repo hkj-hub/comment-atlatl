@@ -13,7 +13,7 @@ const initialState = messageAdapter.getInitialState();
 
 // メッセージスライスを作成
 export const messageSlice = createSlice({
-  name: 'messages',
+  name: 'message',
   initialState,
   reducers: {
     // メッセージを追加するためのアクション

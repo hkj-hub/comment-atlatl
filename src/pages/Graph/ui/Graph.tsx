@@ -1,6 +1,6 @@
 import Cytoscape from 'cytoscape';
 import { useEffect, useRef } from 'react';
-import { CytoscapeComponent } from '@/shared/ui';
+import { CytoscapeComponent } from '@/shared/ui/graph-viewer';
 import { useGraph } from '../model/useGraph';
 
 function getLayoutOption(layout: string) {

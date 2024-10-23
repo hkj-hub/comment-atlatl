@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import {
+  simulateLoop,
+  simulator,
+  getForce,
+  formatText,
+  simulatorSlice,
+  textsSelector,
+} from '@/entities/simulator';
 import { sendMessageAction } from '@/features/comment';
 import { useAppDispatch, useAppSelector } from '@/shared/store';
-import { simulateLoop, simulator } from './domain';
-import { getForce } from './domain/force';
-import { formatText } from './domain/format';
-import { textsSelector } from './simulatorSelector';
-import { simulatorSlice } from './simulatorSlice';
 
 export const useSimulatorHooks = () => {
   const dispatch = useAppDispatch();
