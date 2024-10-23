@@ -25,6 +25,8 @@ export default tseslint.config({
     ...compat.extends(
       'plugin:@conarti/eslint-plugin-feature-sliced/recommended',
     ),
+    ...compat.extends('next/core-web-vitals'),
+    ...compat.extends('next/typescript'),
     prettierConfig,
   ],
   plugins: {
