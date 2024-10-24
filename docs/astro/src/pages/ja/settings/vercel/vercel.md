@@ -4,8 +4,14 @@ description: Vercelの設定
 layout: ../../../../layouts/MainLayout.astro
 ---
 
-[SkyWay コンソール](https://console.skyway.ntt.com/login)からログイン。
+# Vercel 設定
 
-アプリケーション ID とシークレットキーを取得。`.env.local`ファイル に記載
+## npm install コマンドの変更
 
-![](/comment-atlatl/images/settings/2023-07-06-01-51-42.png)
+`@storybook/nextjs: ^8.3.6`と`next: 15.0.1`の間で不整合が起きており、`npm install`でエラーとなる。
+一時的な不整合のため、`npm install --force`で暫定回避を行う。
+
+The setting present under Project → Settings → General → Build & Development Settings.
+
+![](/comment-atlatl/images/settings/vercel-settings-1.png)
+![](/comment-atlatl/images/settings/vercel-settings-2.png)
