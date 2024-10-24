@@ -1,3 +1,9 @@
+---
+title: 技術選定
+description: アプリケーションの設計
+layout: ../../layouts/MainLayout.astro
+---
+
 # 概要
 
 下記サイトの１章を参考に、本アプリケーションの設計を検討した。
