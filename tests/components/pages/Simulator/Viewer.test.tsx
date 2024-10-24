@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import Viewer from '@/components/pages/Simulator/Viewer';
-import { simulaterProps } from '@/domain/simulator/constants';
+import Viewer from '@/pages/Simulator/ui/Viewer';
+import { simulaterProps } from '@/entities/simulator/model/domain/constants';
 
 test('テキストの表示', () => {
   const items = [

@@ -24,7 +24,10 @@ export type Sidebar = Record<
 >;
 export const SIDEBAR: Sidebar = {
   ja: {
-    目次: [{ text: 'イントロダクション', link: `${BASE_PATH}/ja/introduction` }],
+    目次: [
+      { text: 'イントロダクション', link: `${BASE_PATH}/ja/introduction` },
+      { text: '技術選定', link: `${BASE_PATH}/ja/application-architecture` },
+    ],
     開発用: [
       { text: 'Storybook', link: `${BASE_PATH}/comment-atlatl-components/index.html` },
       { text: 'Jestレポート', link: `${BASE_PATH}/comment-atlatl-jest-reports/jest.html` },

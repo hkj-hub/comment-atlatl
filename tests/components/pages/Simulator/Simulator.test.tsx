@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Simulator from '@/components/pages/Simulator/Simulator';
+import * as SimulatorHooks from '@/pages/Simulator/model/simulatorHooks';
+import Simulator from '@/pages/Simulator/ui/Simulator';
 
-// // モック作成準備
-import * as SimulatorHooks from '@/hooks/simulatorHooks';
-jest.mock('@/hooks/simulatorHooks');
+// モック作成準備
+jest.mock('@/pages/Simulator/model/simulatorHooks');
 
 const texts = [
   {

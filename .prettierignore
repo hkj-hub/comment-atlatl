@@ -10,3 +10,6 @@ node_modules
 pnpm-lock.yaml
 package-lock.json
 eslintrc.cjs
+
+# markdown の成形はやりすぎると見づらくなるので無視
+*.md

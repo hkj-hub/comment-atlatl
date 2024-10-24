@@ -55,13 +55,17 @@ http://localhost:3000/ で開発サーバがローカルに立ち上がる。
 
 #### ディレクトリ
 
+[FSD-with-nextjs](https://feature-sliced.design/docs/guides/tech/with-nextjs)の構成とする
+
 ```
 .githooks ... Git Hooks用
 .github   ... GithubPages公開用のアクションを格納
 .vscode   ... vscodeの設定
 bin       ... 実行ファイル用
 docs      ... GithubPages用のドキュメント
-src       ... Next.js のソース
+src       ... Next.js のソース / FSD
+pages     ... Next.js のソース / routing
+types     ... グローバルに利用する型。乱用注意
 ```
 
 #### lint 設定ファイル
@@ -73,7 +77,7 @@ vscode の拡張を利用し、保存時に autofix される設定とする。
 .vscode/extensions.json ... lint拡張プラグインのおすすめ
 .vscode/settings.json   ... 保存時に自動でlint fixを行うための設定込
 .editorconfig           ... 改行コードをlinux準拠のLFに。インデントを2に。
-.eslintrc.cjs           ... eslintの設定
+.eslint.config.mjs      ... eslintの設定
 .prettierignore         ... prettier用の設定
 .prettierrc             ... prettier用の設定。セミコロン必須。末尾カンマ必須。
 ```
