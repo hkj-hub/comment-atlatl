@@ -9,11 +9,17 @@ import {
 } from '@/entities/simulator';
 import { sendMessageAction } from '@/features/comment';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
+import { joinP2PRoomActionForSimulator } from './joinP2PRoomActionForSimulator';
 
 export const useSimulatorHooks = () => {
   const dispatch = useAppDispatch();
   const texts = useAppSelector(textsSelector);
   const loopRef = useRef<number>(0);
+
+  useEffect(() => {
+    dispatch(joinP2PRoomActionForSimulator());
+  }, [dispatch]);
+
   useEffect(() => {
     loopRef.current = window.setInterval(() => {
       const texts = simulateLoop();
