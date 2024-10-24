@@ -1,5 +1,5 @@
 import Cytoscape from 'cytoscape';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { graphSelector, graphSlice } from '@/entities/graph';
 import { featureFlag } from '@/shared/config/featureFlag';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
@@ -10,8 +10,15 @@ export const useGraph = () => {
   const [selectedLabel, setSelectedLabel] = useState<string | null>(null);
   const elements = useAppSelector(graphSelector);
   const dispatch = useAppDispatch();
+  const refFirstRef = useRef(true);
   useEffect(() => {
-    dispatch(joinP2PRoomActionForGraph());
+    if (process.env.NODE_ENV === 'development') {
+      if (refFirstRef.current) {
+        refFirstRef.current = false;
+        dispatch(joinP2PRoomActionForGraph());
+        return;
+      }
+    }
   }, [dispatch]);
   const tapEventHandler = function (evt: Cytoscape.EventObject) {
     const node = evt.target;

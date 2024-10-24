@@ -15,9 +15,15 @@ export const useSimulatorHooks = () => {
   const dispatch = useAppDispatch();
   const texts = useAppSelector(textsSelector);
   const loopRef = useRef<number>(0);
-
+  const refFirstRef = useRef(true);
   useEffect(() => {
-    dispatch(joinP2PRoomActionForSimulator());
+    if (process.env.NODE_ENV === 'development') {
+      if (refFirstRef.current) {
+        refFirstRef.current = false;
+        dispatch(joinP2PRoomActionForSimulator());
+        return;
+      }
+    }
   }, [dispatch]);
 
   useEffect(() => {
