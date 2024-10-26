@@ -1,4 +1,4 @@
-import ViewerBaseWrapper from '@/pages/Simulator/ui/BaseWrapper';
+import ViewerBaseWrapper from '../ui/BaseWrapper';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
