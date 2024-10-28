@@ -15,7 +15,7 @@ export const saveComment = async () => {
   localStorage.setItem(KEY_COMMENT, node);
 
   await conn.execute(
-    `COPY (MATCH (a:Comment)-[f:Res]->(b:Comment) RETURN a.id, f.since, b.id) TO '/${KEY_COMMENT_RES}.csv' (header=false, delim='|');`,
+    `COPY (MATCH (a:Comment)-[r:Res]->(b:Comment) RETURN a.id, b.id) TO '/${KEY_COMMENT_RES}.csv' (header=false);`,
   );
   const rel = kuzu.FS.readFile(`/${KEY_COMMENT_RES}.csv`, { encoding: 'utf8' });
   localStorage.setItem(KEY_COMMENT_RES, rel);

@@ -1,10 +1,7 @@
 import Cytoscape from 'cytoscape';
 import { useEffect, useRef, useState } from 'react';
 import { graphSelector, graphSlice } from '@/entities/graph';
-import {
-  loadCommentNodeAction,
-  saveCommentNodeAction,
-} from '@/features/comment/model/graph/actions';
+import { loadCommentNodeAction, saveCommentNodeAction } from '@/features/comment/';
 import { featureFlag } from '@/shared/config/featureFlag';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { createCytoscapeStyle } from './createCytoscapeStyle';
@@ -68,6 +65,6 @@ export const useGraph = () => {
     selectedLabel,
     initCytoscape,
     save: () => dispatch(saveCommentNodeAction()),
-    load: () => dispatch(loadCommentNodeAction()),
+    load: async () => dispatch(loadCommentNodeAction()),
   };
 };
