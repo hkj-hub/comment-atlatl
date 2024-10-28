@@ -22,6 +22,11 @@ function Graph() {
     if (!cyref.current) return;
     cyref.current.layout(getLayoutOption(layout)).run();
   };
+  const loadGraph = async () => {
+    await load();
+    if (!cyref.current) return;
+    cyref.current.layout({ name: 'cose', animate: false }).run();
+  };
   useEffect(() => {
     if (!cyref.current || elements.length > 10) return;
     cyref.current.layout({ name: 'breadthfirst' }).run();
@@ -49,16 +54,7 @@ function Graph() {
         style={{ width: '600px', height: '600px' }}
       />
       <div>
-        <button onClick={save}>保存</button>{' '}
-        <button
-          onClick={async () => {
-            await load();
-            if (!cyref.current || elements.length > 10) return;
-            cyref.current.layout({ name: 'cose', animate: false }).run();
-          }}
-        >
-          復元
-        </button>
+        <button onClick={save}>保存</button> <button onClick={loadGraph}>復元</button>
       </div>
     </div>
   );
