@@ -6,7 +6,7 @@ import prettierConfig from 'eslint-config-prettier';
 import sonarjs from 'eslint-plugin-sonarjs';
 import unuserdPlugin from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
-
+import storybook from 'eslint-plugin-storybook';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -19,6 +19,7 @@ export default tseslint.config({
   extends: [
     js.configs.recommended,
     ...tseslint.configs.recommended,
+    ...storybook.configs['flat/recommended'],
     ...compat.extends('plugin:storybook/recommended'),
     ...compat.extends('plugin:import/recommended'),
     ...compat.extends('plugin:sonarjs/recommended-legacy'),
@@ -73,7 +74,7 @@ export default tseslint.config({
     'import/prefer-default-export': ['off'],
     'import/extensions': ['off'],
     // エラー回避
-    'storybook/no-uninstalled-addons': ['off'],
+    // 'storybook/no-uninstalled-addons': ['off'],
   },
   settings: {
     'import/resolver': {
