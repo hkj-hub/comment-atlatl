@@ -19,6 +19,7 @@ export const useGraphViewModel = () => {
     if (!cyref.current || elements.length > 10) return;
     cyref.current.layout({ name: 'breadthfirst' }).run();
   }, [elements]);
+
   return {
     elements,
     selectedLabel,
