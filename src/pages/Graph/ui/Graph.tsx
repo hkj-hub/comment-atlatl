@@ -1,54 +1,35 @@
-import Cytoscape from 'cytoscape';
-import { useEffect, useRef } from 'react';
 import { CytoscapeComponent } from '@/shared/ui/graph-viewer';
-import { useGraph } from '../model/useGraph';
-
-function getLayoutOption(layout: string) {
-  const base = { name: layout, fit: false };
-  if (layout === 'cose') {
-    return { ...base, animate: false };
-  }
-  if (layout === 'grid' || layout === 'random') {
-    return { ...base, fit: true };
-  }
-  return base;
-}
+import { useGraphViewModel } from '../model/useGraphViewModel';
 
 function Graph() {
-  const cyref = useRef<Cytoscape.Core | null>(null);
-  const { elements, initCytoscape, selectedLabel, save, load } = useGraph();
-
-  const changeLayout = (layout: string) => {
-    if (!cyref.current) return;
-    cyref.current.layout(getLayoutOption(layout)).run();
-  };
-  const loadGraph = async () => {
-    await load();
-    if (!cyref.current) return;
-    cyref.current.layout({ name: 'cose', animate: false }).run();
-  };
-  useEffect(() => {
-    if (!cyref.current || elements.length > 10) return;
-    cyref.current.layout({ name: 'breadthfirst' }).run();
-  }, [elements]);
+  const {
+    elements,
+    selectedLabel,
+    loadGraph,
+    save,
+    breadthFirstHanlder,
+    circleHandler,
+    concentricHandler,
+    coseHandler,
+    gridHandler,
+    randomHandler,
+    cyHandler,
+  } = useGraphViewModel();
   return (
     <div>
       <div>
         整列:
-        <button onClick={() => changeLayout('breadthfirst')}>breadthfirst</button>
-        <button onClick={() => changeLayout('circle')}>circle</button>
-        <button onClick={() => changeLayout('concentric')}>concentric</button>
-        <button onClick={() => changeLayout('cose')}>cose</button>
-        <button onClick={() => changeLayout('grid')}>grid</button>
-        <button onClick={() => changeLayout('random')}>random</button>
+        <button onClick={breadthFirstHanlder}>breadthfirst</button>
+        <button onClick={circleHandler}>circle</button>
+        <button onClick={concentricHandler}>concentric</button>
+        <button onClick={coseHandler}>cose</button>
+        <button onClick={gridHandler}>grid</button>
+        <button onClick={randomHandler}>random</button>
       </div>
       <div>返信先: {selectedLabel}</div>
       <CytoscapeComponent
         elements={elements}
-        cy={(cy: Cytoscape.Core) => {
-          cyref.current = cy;
-          initCytoscape(cy);
-        }}
+        cy={cyHandler}
         layout={{ name: 'preset' }}
         wheelSensitivity={0.1}
         style={{ width: '600px', height: '600px' }}
