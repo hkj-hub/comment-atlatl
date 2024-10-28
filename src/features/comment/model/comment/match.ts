@@ -1,5 +1,5 @@
 import { featureFlag } from '@/shared/config/featureFlag';
-import { getGraphDbClient } from '@/shared/lib';
+import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 import type { MessagePaylad } from '@/entities/message';
 import type { Connection, QueryResult } from '@kuzu/kuzu-wasm';
 

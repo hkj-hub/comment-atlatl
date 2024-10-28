@@ -1,5 +1,4 @@
-import { getGraphDbClient } from '@/shared/lib';
-import { getKuzu } from '@/shared/lib/graphdb/kuzu';
+import { getGraphDbClient, getKuzu } from '@/shared/lib/graphdb/kuzu';
 
 const KEY_COMMENT = 'backup_graphdb_comment';
 const KEY_COMMENT_RES = 'backup_graphdb_comment_response';
