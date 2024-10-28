@@ -7,6 +7,8 @@ A project that wants to make such a mechanism.
 
 [developper documents](https://hkj-hub.github.io/comment-atlatl/ja/introduction/)
 
+[github](https://github.com/hkj-hub/comment-atlatl)
+
 [demo](https://comment-atlatl.vercel.app/)
 
 <img src="https://repository-images.githubusercontent.com/661897641/86ae75db-d974-463b-a1c5-984fd07da2b1" />

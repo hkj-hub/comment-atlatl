@@ -1,53 +1,31 @@
-import Cytoscape from 'cytoscape';
-import { useEffect, useRef } from 'react';
 import { CytoscapeComponent } from '@/shared/ui/graph-viewer';
-import { useGraph } from '../model/useGraph';
-
-function getLayoutOption(layout: string) {
-  const base = { name: layout, fit: false };
-  if (layout === 'cose') {
-    return { ...base, animate: false };
-  }
-  if (layout === 'grid' || layout === 'random') {
-    return { ...base, fit: true };
-  }
-  return base;
-}
+import { useGraphViewModel } from '../model/useGraphViewModel';
 
 function Graph() {
-  const cyref = useRef<Cytoscape.Core | null>(null);
-  const { elements, initCytoscape, selectedLabel } = useGraph();
-
-  const changeLayout = (layout: string) => {
-    if (!cyref.current) return;
-    cyref.current.layout(getLayoutOption(layout)).run();
-  };
-  useEffect(() => {
-    if (!cyref.current || elements.length > 10) return;
-    cyref.current.layout({ name: 'breadthfirst' }).run();
-  }, [elements]);
+  const vm = useGraphViewModel();
+  const { elements, selectedLabel } = vm;
   return (
     <div>
       <div>
         整列:
-        <button onClick={() => changeLayout('breadthfirst')}>breadthfirst</button>
-        <button onClick={() => changeLayout('circle')}>circle</button>
-        <button onClick={() => changeLayout('concentric')}>concentric</button>
-        <button onClick={() => changeLayout('cose')}>cose</button>
-        <button onClick={() => changeLayout('grid')}>grid</button>
-        <button onClick={() => changeLayout('random')}>random</button>
+        <button onClick={vm.breadthFirstHanlder}>breadthfirst</button>
+        <button onClick={vm.circleHandler}>circle</button>
+        <button onClick={vm.concentricHandler}>concentric</button>
+        <button onClick={vm.coseHandler}>cose</button>
+        <button onClick={vm.gridHandler}>grid</button>
+        <button onClick={vm.randomHandler}>random</button>
       </div>
       <div>返信先: {selectedLabel}</div>
       <CytoscapeComponent
         elements={elements}
-        cy={(cy: Cytoscape.Core) => {
-          cyref.current = cy;
-          initCytoscape(cy);
-        }}
+        cy={vm.cyHandler}
         layout={{ name: 'preset' }}
         wheelSensitivity={0.1}
         style={{ width: '600px', height: '600px' }}
       />
+      <div>
+        <button onClick={vm.save}>保存</button> <button onClick={vm.loadGraph}>復元</button>
+      </div>
     </div>
   );
 }
