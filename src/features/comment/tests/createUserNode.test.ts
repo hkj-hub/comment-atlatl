@@ -22,13 +22,19 @@ jest.mock('@kuzu/kuzu-wasm', () => {
 });
 
 describe('createUserNode', () => {
-  test('テストユーザを作成できること', async () => {
+  beforeEach(async () => {
     await initDb();
-    await createUserNode('test-peer-id');
+  });
+  afterEach(async () => {
+    const conn = await getGraphDbClient();
+    await conn.execute('MATCH (n) DETACH DELETE n');
+  });
+  test.each([['test-peer-id-1'], ['test-peer-id-2']])('ユーザを作成できること: %s', async (pid) => {
+    await createUserNode(pid);
     const conn = await getGraphDbClient();
     const result = await conn.execute('MATCH (u) RETURN (u)');
-    const [ret] = getQueryData(result); //  [{"n": {"_ID": {"offset": "0", "table": "0"}, "_LABEL": "User", "id": null, "message": null, "peerId": "test-peer-id", "timestamp": null}}]
-    expect(ret['u'].peerId).toBe('test-peer-id');
+    const [ret] = getQueryData(result); //  [{"u": {"_ID": {"offset": "0", "table": "0"}, "_LABEL": "User", "id": null, "message": null, "peerId": "test-peer-id", "timestamp": null}}]
+    expect(ret['u'].peerId).toBe(pid);
   });
 });
 function getQueryData(result: QueryResult) {
