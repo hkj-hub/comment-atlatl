@@ -18,7 +18,7 @@ const config = {
   testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['./tests/jest.setup.ts'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
-  coveragePathIgnorePatterns: ['<rootDir>/.*\\.m?js$', '/mock/'],
+  coveragePathIgnorePatterns: ['<rootDir>/.*\\.m?js$', '/mock/', '/tests/'],
   collectCoverage: true,
   coverageDirectory: './docs/astro/public/comment-atlatl-jest-coverage',
 
