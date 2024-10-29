@@ -1,24 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 import { createUserNode, initDb } from '../model/comment/create';
-import { initializeWebDatabase, initializeWebConnection } from './mock/helper.mjs';
 import type { QueryResult } from '@kuzu/kuzu-wasm';
 
 // https://qiita.com/Leech/items/5cd1e83253d0179b0cec
 jest.mock('@kuzu/kuzu-wasm', () => {
-  // https://github.com/unswdb/kuzu-wasm/blob/main/packages/kuzu-wasm/src/index.js
-  return async () => {
-    const originalModule = jest.requireActual('@kuzu/kuzu-wasm');
-    const m = await originalModule();
-    const Database = () => initializeWebDatabase(m);
-    const Connection = (...args: [any, number]) => initializeWebConnection(m, ...args);
-    return {
-      ...m,
-      Database,
-      Connection,
-    };
-  };
+  const originalModule = jest.requireActual('@kuzu/kuzu-wasm');
+  const { createMockDb } = jest.requireActual('./mock/mockDb'); // 普通にimportすると、 ReferenceError: Cannot access '_mockDb' before initialization が発生する
+  return createMockDb(originalModule);
 });
 
 describe('createUserNode', () => {
