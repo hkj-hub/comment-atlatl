@@ -21,7 +21,7 @@ describe('getGraphdbCytoscape', () => {
     const ret = await getGraphdbCytoscape();
     expect(ret.length).toBe(0);
   });
-  test('リレーションがある場合にデータが返ること', async () => {
+  test('返信元がsource、返信先がtargetになっていること', async () => {
     const base = msg2;
     const reply = msg1;
     await createCommentNode(base);
