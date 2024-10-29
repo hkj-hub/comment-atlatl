@@ -2,7 +2,7 @@
 
 import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 import { createUserNode, initDb } from '../model/comment/create';
-import { initializeWebDatabase, initializeWebConnection } from './helper.mjs';
+import { initializeWebDatabase, initializeWebConnection } from './mock/helper.mjs';
 import type { QueryResult } from '@kuzu/kuzu-wasm';
 
 // https://qiita.com/Leech/items/5cd1e83253d0179b0cec
@@ -22,7 +22,7 @@ jest.mock('@kuzu/kuzu-wasm', () => {
 });
 
 describe('createUserNode', () => {
-  beforeEach(async () => {
+  beforeAll(async () => {
     await initDb();
   });
   afterEach(async () => {
