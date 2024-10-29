@@ -15,7 +15,7 @@ const compat = new FlatCompat({
 });
 
 export default tseslint.config({
-  ignores: ['dist', 'public', '*.mjs', '*.js'],
+  ignores: ['dist', 'public', '*.js'],
   extends: [
     js.configs.recommended,
     ...tseslint.configs.recommended,

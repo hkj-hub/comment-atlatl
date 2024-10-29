@@ -10,3 +10,5 @@ if (typeof global.TextEncoder === 'undefined') {
 if (typeof global.TextDecoder === 'undefined') {
   global.TextDecoder = require('util').TextDecoder;
 }
+// jsdomのwindowオブジェクトにもprototypeを設定
+Object.setPrototypeOf(window, Window.prototype);

@@ -3,6 +3,7 @@ declare module '@kuzu/kuzu-wasm' {
 
   export interface Kuzu {
     Database: () => Promise<Database>;
+    WebDatabase: () => any; // jest 用に追加
     Connection: (db: Database) => Promise<Connection>;
     FS: {
       writeFile: (path: string, content: string) => void;
