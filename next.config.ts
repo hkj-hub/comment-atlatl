@@ -15,11 +15,12 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+  // https://nextjs.org/docs/pages/api-reference/next-config-js/headers https://kajiri.dev/using-ffmpeg-wasm-with-nextjs
   // SharedArrayBufferを使うため、ヘッダに Cross-Origin-Opener-Policy を追加
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: '/:path*',
         headers: [
           {
             key: 'Cross-Origin-Opener-Policy',

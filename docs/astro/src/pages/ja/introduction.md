@@ -59,7 +59,7 @@ gitGraph
 ## リンク
 
 [github](https://github.com/hkj-hub/comment-atlatl)  
-[vercel](https://vercel.com/hkj-hub/comment-atlatl)
+[vercel](https://vercel.com/hkjhubs-projects/comment-atlatl-7jhx)
 
 [skyway - docs](https://skyway.ntt.com/ja/docs/user-guide/introduction/)
 [skyway - api](https://github.com/skyway/skyway-webrtc-gateway/blob/master/api/api.yaml)
