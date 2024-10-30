@@ -57,13 +57,17 @@ async function getUserRelation(conn: Connection) {
   );
   return relsResult;
 }
+async function getCommentRelation(conn: Connection) {
+  const commentRelsResult = await conn.execute('MATCH (a:Comment)-[r:Res]->(c:Comment) RETURN (r)');
+  return commentRelsResult;
+}
 export const getGraphdbCytoscape = async () => {
   const conn = await getGraphDbClient();
   const nodesResult = await getNode(conn);
   const nodes = getQueryData(nodesResult);
   const relsResult = await getUserRelation(conn);
   const rels = getQueryData(relsResult);
-  const commentRelsResult = await conn.execute('MATCH (a:Comment)-[r:Res]->(c:Comment) RETURN (r)');
+  const commentRelsResult = await getCommentRelation(conn);
   const commentRels = getQueryData(commentRelsResult);
   const nodeData = nodes.map(({ n }: { n: DBNodeResult }) => createNode(n));
 

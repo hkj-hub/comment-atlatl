@@ -4,9 +4,9 @@ import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import prettierConfig from 'eslint-config-prettier';
 import sonarjs from 'eslint-plugin-sonarjs';
+import storybook from 'eslint-plugin-storybook';
 import unuserdPlugin from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
-import storybook from 'eslint-plugin-storybook';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -15,7 +15,7 @@ const compat = new FlatCompat({
 });
 
 export default tseslint.config({
-  ignores: ['dist', 'public', '*.mjs', '*.js'],
+  ignores: ['dist', 'public', '*.mjs', '**/*.mjs', '*.js'],
   extends: [
     js.configs.recommended,
     ...tseslint.configs.recommended,
