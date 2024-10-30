@@ -17,13 +17,11 @@ export const useSimulatorHooks = () => {
   const loopRef = useRef<number>(0);
   const refFirstRef = useRef(true);
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      if (refFirstRef.current) {
-        refFirstRef.current = false;
-        dispatch(joinP2PRoomActionForSimulator());
-        return;
-      }
+    if (process.env.NODE_ENV === 'development' && !refFirstRef.current) {
+      return;
     }
+    refFirstRef.current = false;
+    dispatch(joinP2PRoomActionForSimulator());
   }, [dispatch]);
 
   useEffect(() => {
