@@ -13,13 +13,11 @@ export const useGraph = () => {
   const dispatch = useAppDispatch();
   const refFirstRef = useRef(true);
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      if (refFirstRef.current) {
-        refFirstRef.current = false;
-        dispatch(joinP2PRoomActionForGraph());
-        return;
-      }
+    if (process.env.NODE_ENV === 'development' && !refFirstRef.current) {
+      return;
     }
+    refFirstRef.current = false;
+    dispatch(joinP2PRoomActionForGraph());
   }, [dispatch]);
   const tapEventHandler = function (evt: Cytoscape.EventObject) {
     const node = evt.target;

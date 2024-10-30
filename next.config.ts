@@ -28,7 +28,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Cross-Origin-Embedder-Policy',
-            value: 'credentialless', // 'require-corp',
+            value: 'credentialless', // 'require-corp', だと  https://vercel.live/_next-live/feedback/feedback.js net::ERR_BLOCKED_BY_RESPONSE.NotSameOriginAfterDefaultedToSameOriginByCoep が発生する
           },
         ],
       },
