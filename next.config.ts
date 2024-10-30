@@ -15,11 +15,12 @@ const nextConfig: NextConfig = {
 
     return config;
   },
-  // 開発サーバのヘッダに Cross-Origin-Opener-Policy を追加
+  // https://nextjs.org/docs/pages/api-reference/next-config-js/headers https://kajiri.dev/using-ffmpeg-wasm-with-nextjs
+  // SharedArrayBufferを使うため、ヘッダに Cross-Origin-Opener-Policy を追加
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: '/:path*',
         headers: [
           {
             key: 'Cross-Origin-Opener-Policy',
@@ -27,11 +28,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Cross-Origin-Embedder-Policy',
-            value: 'require-corp',
-          },
-          {
-            key: 'Cross-Origin-Resource-Policy',
-            value: 'cross-origin',
+            value: 'credentialless', // 'require-corp',
           },
         ],
       },
