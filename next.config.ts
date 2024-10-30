@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
 
     return config;
   },
-  // 開発サーバのヘッダに Cross-Origin-Opener-Policy を追加
+  // SharedArrayBufferを使うため、ヘッダに Cross-Origin-Opener-Policy を追加
   async headers() {
     return [
       {
@@ -28,10 +28,6 @@ const nextConfig: NextConfig = {
           {
             key: 'Cross-Origin-Embedder-Policy',
             value: 'require-corp',
-          },
-          {
-            key: 'Cross-Origin-Resource-Policy',
-            value: 'cross-origin',
           },
         ],
       },
