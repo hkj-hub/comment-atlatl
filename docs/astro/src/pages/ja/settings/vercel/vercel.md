@@ -15,3 +15,17 @@ The setting present under Project → Settings → General → Build & Developme
 
 ![](/comment-atlatl/images/settings/vercel-settings-1.png)
 ![](/comment-atlatl/images/settings/vercel-settings-2.png)
+
+## ビルドに使用する npm のバージョンをローカルと一致させる
+### 実験的機能の許可
+![](/comment-atlatl/images/settings/vercel-settings-3.png)
+
+package.jsonに下記を追加
+
+```diff
+{
+  "name": "comment-atlatl",
+  "version": "0.9.5",
++  "packageManager": "npm@10.9.0"
+}
+```
