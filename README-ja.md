@@ -25,7 +25,7 @@
     ```
 1.  先ほど発行したローカルサーバの URL にアクセスする
 
-## 環境構築
+## 開発環境構築
 
 ### はじめに
 
@@ -109,6 +109,21 @@ tests/*                  ... テストファイル用
 ```
 
 ## デプロイ
+### リリースノートの追加
+
+#### リリースノート記述ファイル
+
+release-note-latest.md ファイルに記載する
+
+#### リリースノートの追加コマンド
+
+jqコマンドがインストールされていることを前提とする。
+下記のスクリプトを実行。
+
+```
+npm run add-github-releases
+```
+
 
 ### vercel
 
@@ -118,6 +133,12 @@ tests/*                  ... テストファイル用
 | -------- | ---------- | ---------------------------------------------------- |
 | develop  | プレビュー | https://comment-atlatl-pqffaaoay-hkj-hub.vercel.app/ |
 | main     | プロダクト | https://comment-atlatl.vercel.app/                   |
+
+#### vercel用のデプロイ設定
+
+実行環境は package.json の `engines` で指定。
+ビルド時 および 実行環境 での環境変数は vercel.json の `env` で指定。
+ビルド時の npm バージョンは package.json の `packageManager` で指定。※実験的機能。要環境変数設定
 
 ### Github Pages
 
@@ -136,6 +157,7 @@ SkyWay のトークンを発行し、URL に付与する。
 
 [SkyWay について](https://skyway.ntt.com/ja/docs/user-guide/introduction/)
 [SkyWay の認証・認可](https://skyway.ntt.com/ja/docs/user-guide/authentication/)
+
 
 ## ドキュメント
 
