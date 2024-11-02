@@ -1,3 +1,6 @@
 {
-  "ignoreCommand": "bash bin/ignore-build-step.sh"
+  "ignoreCommand": "bash bin/ignore-build-step.sh",
+  "env": {
+    "ENABLE_EXPERIMENTAL_COREPACK": "1"
+  }
 }
