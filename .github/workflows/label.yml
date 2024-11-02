@@ -19,6 +19,8 @@ jobs:
           branch_type=$(echo ${{ github.head_ref }} | cut -d "/" -f1)
           if [ $branch_type == 'id' ]; then
             label_name="feature"
+          elif [ $branch_type == 'release' ]; then
+            label_name="feature"
           elif [ $branch_type == 'fix' ]; then
             label_name="bug"
           elif [ $branch_type == 'hotfix' ]; then
