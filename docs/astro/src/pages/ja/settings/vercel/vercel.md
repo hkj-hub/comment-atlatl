@@ -18,7 +18,18 @@ The setting present under Project → Settings → General → Build & Developme
 
 ## ビルドに使用する npm のバージョンをローカルと一致させる
 ### 実験的機能の許可
-![](/comment-atlatl/images/settings/vercel-settings-3.png)
+vercel.jsonに下記を追記
+
+```diff
+{
+  "ignoreCommand": "bash bin/ignore-build-step.sh",
++  "env": {
++    "ENABLE_EXPERIMENTAL_COREPACK": "1"
++  }
+}
+```
+
+### npm の バージョンを指定
 
 package.jsonに下記を追加
 
