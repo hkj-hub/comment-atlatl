@@ -1,6 +1,6 @@
 {
   "name": "comment-atlatl",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "private": true,
   "scripts": {
     "prepare": "git config --local core.hooksPath .githooks && echo Changed hooks directory when npm install",
@@ -14,7 +14,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o ./docs/astro/public/comment-atlatl-components",
     "build-diagrams": "cd docs/diagrams && python deploy.py",
-    "depcruise": "npx depcruise src --include-only \"^src\" --output-type dot | dot -T svg > dependency-graph.svg"
+    "depcruise": "npx depcruise src --include-only \"^src\" --output-type dot | dot -T svg > dependency-graph.svg",
+    "add-github-releases": "jq -r .version package.json  | tr -d '\\r\\n' |  xargs -i gh release create \"v{}\" --title \"v{}\" --notes-file './release-note-latest.md'"
   },
   "dependencies": {
     "@dimforge/rapier2d": "^0.14.0",
