@@ -40,3 +40,23 @@ package.jsonに下記を追加
 +  "packageManager": "npm@10.9.0"
 }
 ```
+
+## 実行環境のnodeバージョンを明示
+
+### プロジェクト設定から
+
+Settings > General > Node.js Version
+
+![](/comment-atlatl/images/settings/vercel-settings-4.png)
+
+### package.jsonから
+プロジェクト設定よりも優先される。
+プロジェクト設定と異なっているとビルド時に警告が出力される。
+
+
+```diff
+{
++  "engines": {
++    "node": "20.x"
++  }
+}
