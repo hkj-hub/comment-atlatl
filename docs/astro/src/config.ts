@@ -38,6 +38,7 @@ export const SIDEBAR: Sidebar = {
     ],
     設定: [
       { text: 'GitHub Pages', link: `${BASE_PATH}/ja/settings/github/github-pages` },
+      { text: 'GitHub Actions', link: `${BASE_PATH}/ja/settings/github/github-actions` },
       { text: 'Skyway Console', link: `${BASE_PATH}/ja/settings/skyway/console` },
       { text: 'Vercel', link: `${BASE_PATH}/ja/settings/vercel/vercel` },
     ],
