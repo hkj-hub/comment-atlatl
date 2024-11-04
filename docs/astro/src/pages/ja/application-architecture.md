@@ -60,6 +60,22 @@ build 時の CSS 解決が必要な場合は Tailwind や vanilla css が選択�
 
 今回は一般公開用ではなく、SEO を気にする必要もないため`Client-side rendering`(CSR)を採用する。
 
+# Routing
+
+`Pages Router`を採用。[*](https://nextjs.org/docs/pages)
+
+Reactの最新機能を利用する要件がまだ存在しないため。
+
+## ページごとに最適化したレンダリング戦略
+参考先では下記のように分けている。
+
+- 誰もが閲覧可能なページ ... SEOを意識
+  - Server-side rendering（SSR）
+- 管理者用のページ ... サーバ側の負荷軽減
+  - Client-side rendering（CSR）
+
+本アプリケーションではSEOを意識しないため、全ページ `CSR` を採用した。
+
 # テスト設計
 
 テストに利用するライブラリは利用者の多さから下記とした。
