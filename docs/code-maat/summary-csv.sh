@@ -8,4 +8,4 @@ cd $maat_dir
 
 docker run -v $bin_dir:/data -it code-maat-app -l /data/logfile.log -c git2 > $bin_dir/logfile.csv
 docker run -v $bin_dir:/data -it code-maat-app -l /data/logfile.log -c git2 -a revisions > $bin_dir/revisions.csv
-docker run --rm -v $root_dir:/tmp aldanial/cloc ./src --unix --by-file --csv --quiet --report-file=./docs/code-maat/complexity.csv
+docker run --rm -v $root_dir:/tmp aldanial/cloc ./ --unix --by-file --csv --quiet --vcs=git --exclude-dir=docs,.vscode,.github --not-match-f=package-lock\.json --report-file=./docs/code-maat/complexity.csv
