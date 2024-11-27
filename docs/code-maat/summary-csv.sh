@@ -6,4 +6,5 @@ maat_dir=$(cd $bin_dir/../../../tmp/code-maat && pwd)
 cd $maat_dir
 
 docker run -v $bin_dir:/data -it code-maat-app -l /data/logfile.log -c git2 > $bin_dir/logfile.csv
+docker run -v $bin_dir:/data -it code-maat-app -l /data/logfile.log -c git2 -a revisions > $bin_dir/revisions.csv
 
