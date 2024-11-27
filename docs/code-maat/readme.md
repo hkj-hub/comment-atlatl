@@ -14,3 +14,10 @@ sh|説明
 ./csv-to-comp.sh|revisions.csvとcomplexity.csvから変更頻度とコードの行数の紐づけを出力
 ./csv-to-d3-json.sh|revisions.csvとcomplexity.csvからd3へのインプットとなるJSONを生成
 
+hotspots.jsonができたら下記で確認できる。
+
+```
+python -m http.server 8080
+```
+
+http://localhost:8080/crime-scene-hotspots.html
