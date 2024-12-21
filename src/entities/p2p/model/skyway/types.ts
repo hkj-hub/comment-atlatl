@@ -1,5 +1,5 @@
 /* eslint-disable no-var */
-/* eslint-disable sonarjs/no-var */
+
 // 通常通りimportするとnext.jsのSSRで 「RTCPeerConnection is not defined」のエラーが出るため、
 // CDNからのインポートで回避している。このとき、window.skyway_roomにパーツがはいる
 import type {

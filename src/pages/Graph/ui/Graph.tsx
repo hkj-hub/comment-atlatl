@@ -16,7 +16,12 @@ function Graph() {
         <button onClick={vm.randomHandler}>random</button>
       </div>
       <div>返信先: {selectedLabel}</div>
+
       <CytoscapeComponent
+        // node:22 を pakcage.jsonに指定したタイミングでビルドエラーがでるのでいったんコメントアウト
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+
         elements={elements}
         cy={vm.cyHandler}
         layout={{ name: 'preset' }}

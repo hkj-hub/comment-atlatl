@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/new-cap */
 import kuzu_wasm from '@kuzu/kuzu-wasm';
 import type { Connection, Kuzu } from '@kuzu/kuzu-wasm';
 
