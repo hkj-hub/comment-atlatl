@@ -29,8 +29,6 @@ describe('getGraphdbCytoscape', () => {
 
     const ret = await getGraphdbCytoscape();
 
-    // console.log(JSON.stringify(ret));
-    // [{"data":{"id":"id_1_0","label":"test-message-2","type":"Comment","commentId":"test-comment-id-2","peerId":"test-peer-id-2"}},{"data":{"id":"id_1_1","label":"test-message-1","type":"Comment","commentId":"test-comment-id-1","peerId":"test-peer-id-1"}},{"data":{"source":"id_1_1","target":"id_1_0","id":"id_3_0","label":""},"selectable":false}]
     expect(ret.length).toBe(3);
     const [node1, node2, rel] = ret;
     expect(node1.data.commentId).toBe(base.id);
