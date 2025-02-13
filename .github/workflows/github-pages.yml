@@ -57,9 +57,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
 
-      # jest storybook init ※storybookとnextが不整合のバージョンのため 暫定対応で force フラグをつけている
+      # npm ライブラリインストール ※ prepareはgithooksの設定なのでignore-scriptsオプションで無視。 ※storybookとnextが不整合のバージョンのため 暫定対応で force フラグをつけている
       - name: Packages install
-        run: npm ci --force
+        run: npm ci --ignore-scripts --force
 
       # jest test & reports 作成
       - name: Jest Unit Test
@@ -68,6 +68,12 @@ jobs:
       # build storybook
       - name: Build Storybook
         run: npm run build-storybook
+      # init depcruise
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v2
+      # create depcruise
+      - name: Build depcruise
+        run: npm run build-depcruise
 
       # ドキュメント作成
       - name: Build with Astro
@@ -76,6 +82,33 @@ jobs:
             --site "${{ steps.pages.outputs.origin }}" \
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4.5.0
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Download Code Maat
+        run: wget https://github.com/adamtornhill/code-maat/releases/download/v1.0.4/code-maat-1.0.4-standalone.jar
+        working-directory: ./docs/code-maat
+
+      - name: create git log
+        run: git log --all --numstat --date=short --pretty=format:'--%h--%ad--%aN' --no-renames --after=2023-01-01 > ./logfile.log
+        working-directory: ./docs/code-maat
+
+      - name: Run Code Maat
+        run: java -jar code-maat-1.0.4-standalone.jar -l logfile.log -c git2 -c git2 -a revisions > ./revisions.csv
+        working-directory: ./docs/code-maat
+
+      - name: Run Cloc
+        run: docker run --rm -v .:/tmp aldanial/cloc --unix --by-file --csv --quiet --timeout 10 --vcs=git --exclude-dir=docs,.vscode,.github --not-match-f=\.json --report-file=./docs/code-maat/complexity.csv
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - run: python python/csv_as_enclosure_json.py --structure complexity.csv --weights revisions.csv > ../astro/dist/code-maat/hotspots.json
+        working-directory: ./docs/code-maat
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

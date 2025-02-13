@@ -56,6 +56,13 @@ gitGraph
 
 ![](/comment-atlatl/images/deploy.png)
 
+## ディレクトリ構造
+ルーティングは `Pages Router` を採用し `pages` ディレクトリに記載。  
+`src`ディレクトリ以下はFeature-Sliced Design を採用。
+
+![](/comment-atlatl/images/dependency-graph.svg)
+
+
 ## リンク
 
 [github](https://github.com/hkj-hub/comment-atlatl)  

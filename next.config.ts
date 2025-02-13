@@ -5,13 +5,16 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   webpack: (config, { isServer }) => {
-    config.experiments = {
-      asyncWebAssembly: true,
-      layers: true,
-    };
-    config.output.webassemblyModuleFilename =
-      (isServer ? '../' : '') + 'static/wasm/webassembly.wasm';
+    config.experiments = { asyncWebAssembly: true, layers: true };
+    const wasmPathPrefix = isServer ? '../' : '';
+    config.output.webassemblyModuleFilename = `${wasmPathPrefix}static/wasm/webassembly.wasm`;
     config.resolve.alias['@'] = path.join(__dirname, 'src');
+
+    // https://github.com/vercel/next.js/issues/64792
+    // fix warnings for async functions in the browser (https://github.com/vercel/next.js/issues/64792)
+    if (!isServer) {
+      config.output.environment = { ...config.output.environment, asyncFunction: true };
+    }
 
     return config;
   },

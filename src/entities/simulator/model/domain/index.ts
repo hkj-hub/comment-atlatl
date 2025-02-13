@@ -67,22 +67,7 @@ export const simulateLoop = () => {
     };
   });
 
-  // eventQueue.drainCollisionEvents((handle1, handle2, started) => {
-  //   console.log('drainCollisionEvents', { handle1, handle2, started });
-  //   const b1 = world.getRigidBody(handle1);
-  //   const b2 = world.getRigidBody(handle2);
-  //   console.log({ b1, b2 });
-  //   const c1 = world.getCollider(handle1);
-  //   const c2 = world.getCollider(handle2);
-  //   console.log({ c1, c2 });
-  //   if(b1) b1.addForce({ x: 0, y: -1 }, true);
-  // });
-
-  // CONTACT_FORCE_EVENTSを有効にしていないので、発生しない
-  // eventQueue.drainContactForceEvents(event => {
-  //     let handle1 = event.collider1(); // Handle of the first collider involved in the event.
-  //     let handle2 = event.collider2(); // Handle of the second collider involved in the event.
-  //     console.log('drainContactForceEvents', {handle1, handle2})
-  // });
+  // eventQueue.drainCollisionEventsはCOLLISION_EVENTSを有効にしていないので、発生しない
+  // eventQueue.drainContactForceEventsはCONTACT_FORCE_EVENTSを有効にしていないので、発生しない
   return items;
 };

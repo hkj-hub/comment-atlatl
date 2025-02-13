@@ -35,9 +35,14 @@ export const SIDEBAR: Sidebar = {
         text: 'Jestカバレッジ',
         link: `${BASE_PATH}/comment-atlatl-jest-coverage/lcov-report/index.html`,
       },
+      {
+        text: 'ホットスポットプロファイル',
+        link: `${BASE_PATH}/code-maat/crime-scene-hotspots.html`,
+      },
     ],
     設定: [
       { text: 'GitHub Pages', link: `${BASE_PATH}/ja/settings/github/github-pages` },
+      { text: 'GitHub Actions', link: `${BASE_PATH}/ja/settings/github/github-actions` },
       { text: 'Skyway Console', link: `${BASE_PATH}/ja/settings/skyway/console` },
       { text: 'Vercel', link: `${BASE_PATH}/ja/settings/vercel/vercel` },
     ],

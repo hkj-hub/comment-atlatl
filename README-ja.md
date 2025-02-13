@@ -13,14 +13,17 @@
     APPLICATION_TOKEN=your sky way application id
     APPLICATION_URL=http://localhost:3000
     ```
-1.  SkyWay トークンを付与したローカルサーバの URL を発行する
+1. ライブラリのインストール。 next v15 に storybookがまだ対応していないため、 `--force` オプションが必要。 ※2024.11.01 
     ```
-    npm install
+    npm install --force
+    ```
+
+1.  SkyWay トークンを付与したローカルサーバの URL を発行する。
+    ```
     npm run generate-url
     ```
 1.  ローカルサーバを起動する
     ```
-    npm install
     npm run dev
     ```
 1.  先ほど発行したローカルサーバの URL にアクセスする
@@ -112,7 +115,9 @@ tests/*                  ... テストファイル用
 ### リリースノートの追加
 #### 自動生成リリースノート
 
-.github/release.yml に 設定を記載
+- `.github/release.yml`           ... リリースノート自動設定用の情報を記載
+- `.github/workflows/label.yml`   ... プルリク作成時のラベル付与
+- `.github/workflows/release.yml` ... プルリクマージ時のリリースノート作成
 
 #### 手動でのリリースノート追加
 ##### リリースノート記述ファイル
