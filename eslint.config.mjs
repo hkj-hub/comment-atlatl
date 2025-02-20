@@ -15,7 +15,6 @@ const compat = new FlatCompat({
 });
 
 export default tseslint.config({
-  // ignores: ['dist', 'public', '*.mjs', '**/*.mjs', '*.js'], // この行をいれると次の警告が表示される。  ⚠ The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
   extends: [
     js.configs.recommended,
     // ...tseslint.configs.recommended,
@@ -89,4 +88,10 @@ export default tseslint.config({
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
   },
+  ignores: [
+    'dist',
+    'public',
+    // '*.mjs', // この行をいれると次の警告が表示される。  ⚠ The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
+    '*.js',
+  ],
 });
