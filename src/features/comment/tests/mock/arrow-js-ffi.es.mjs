@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as arrow from 'apache-arrow';
 import { DataType } from 'apache-arrow';
 

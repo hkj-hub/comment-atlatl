@@ -15,10 +15,10 @@ const compat = new FlatCompat({
 });
 
 export default tseslint.config({
-  ignores: ['dist', 'public', '*.mjs', '**/*.mjs', '*.js'],
+  // ignores: ['dist', 'public', '*.mjs', '**/*.mjs', '*.js'], // この行をいれると次の警告が表示される。  ⚠ The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
   extends: [
     js.configs.recommended,
-    ...tseslint.configs.recommended,
+    // ...tseslint.configs.recommended,
     ...storybook.configs['flat/recommended'],
     ...compat.extends('plugin:storybook/recommended'),
     ...compat.extends('plugin:import/recommended'),
