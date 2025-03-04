@@ -10,6 +10,9 @@ import storybook from 'eslint-plugin-storybook';
 import unuserdPlugin from 'eslint-plugin-unused-imports';
 import sonarjs from 'eslint-plugin-sonarjs';
 import importPlugin from 'eslint-plugin-import';
+import { FlatCompat } from '@eslint/eslintrc';
+
+const compat = new FlatCompat();
 
 /**
  * A custom ESLint configuration for libraries that use Next.js.
@@ -20,6 +23,7 @@ export const nextJsConfig = [
   ...baseConfig,
   js.configs.recommended,
   importPlugin.flatConfigs.recommended,
+  ...compat.extends('plugin:@conarti/feature-sliced/rules'),
   ...storybook.configs['flat/recommended'],
   eslintConfigPrettier,
   ...tseslint.configs.recommended,
@@ -52,6 +56,7 @@ export const nextJsConfig = [
       'react/react-in-jsx-scope': 'off',
     },
   },
+
   {
     plugins: {
       'unused-imports': unuserdPlugin,
