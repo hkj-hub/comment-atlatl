@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { TextProps } from './domain/types';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-interface SimulatorState {
+export interface SimulatorState {
   texts: TextProps[];
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "@/web",
+  "name": "@comment-atlatl/web",
   "version": "0.10.0",
   "private": true,
   "scripts": {
@@ -28,6 +28,7 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
+    "@comment-atlatl/typescript-config": "*",
     "@skyway-sdk/room": "^1.11.1",
     "@skyway-sdk/token": "^1.7.0",
     "@storybook/addon-essentials": "^8.6.3",

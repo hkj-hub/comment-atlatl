@@ -1,6 +1,6 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 
-interface P2PState {
+export interface P2PState {
   peerId: string;
 }
 

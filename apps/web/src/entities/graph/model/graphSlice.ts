@@ -11,12 +11,12 @@ export type GraphDataFromKuzu = {
     peerId?: string;
   };
 };
-interface State {
+export interface GraphState {
   graph: GraphDataFromKuzu[];
   selectedId: string | null;
 }
 
-const initialState: State = {
+const initialState: GraphState = {
   graph: [],
   selectedId: null,
 };
