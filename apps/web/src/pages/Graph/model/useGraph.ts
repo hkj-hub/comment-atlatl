@@ -1,11 +1,11 @@
 import Cytoscape from 'cytoscape';
 import { useEffect, useRef, useState } from 'react';
+import { createCytoscapeStyle } from './createCytoscapeStyle';
+import { joinP2PRoomActionForGraph } from './joinP2PRoomActionForGraph';
 import { graphSelector, graphSlice } from '@/entities/graph';
 import { loadCommentNodeAction, saveCommentNodeAction } from '@/features/comment/';
 import { featureFlag } from '@/shared/config/featureFlag';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
-import { createCytoscapeStyle } from './createCytoscapeStyle';
-import { joinP2PRoomActionForGraph } from './joinP2PRoomActionForGraph';
 
 export const useGraph = () => {
   const [selectedLabel, setSelectedLabel] = useState<string | null>(null);

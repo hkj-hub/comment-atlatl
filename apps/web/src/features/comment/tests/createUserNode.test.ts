@@ -1,6 +1,6 @@
-import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 import { createUserNode, initDb } from '../model/comment/create';
 import { getQueryData } from './mock/util';
+import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 
 // https://qiita.com/Leech/items/5cd1e83253d0179b0cec
 jest.mock('@kuzu/kuzu-wasm', () => {

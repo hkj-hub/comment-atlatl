@@ -1,5 +1,5 @@
-import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 import type { MessagePaylad } from '@/entities/message';
+import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 
 export const initDb = async () => {
   const conn = await getGraphDbClient();

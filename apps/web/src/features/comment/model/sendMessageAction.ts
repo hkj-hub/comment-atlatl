@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
+import { createCommentNodeAction } from './graph/actions';
 import { addMessage } from '@/entities/message';
 import { sendMessage } from '@/entities/p2p';
-import { createCommentNodeAction } from './graph/actions';
 
 const createMessage = (message: string) => ({
   id: uuidv4(),

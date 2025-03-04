@@ -6,7 +6,8 @@
   "exports": {
     "./base": "./base.js",
     "./next-js": "./next.js",
-    "./react-internal": "./react-internal.js"
+    "./react-internal": "./react-internal.js",
+    "./my-next-js": "./my-next.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -18,7 +19,13 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-turbo": "^2.4.4",
     "globals": "^16.0.0",
+    "npm-check-updates": "^17.1.15",
     "typescript": "^5.8.2",
-    "typescript-eslint": "^8.26.0"
+    "typescript-eslint": "^8.26.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-sonarjs": "^3.0.2",
+    "eslint-plugin-storybook": "^0.11.3",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "@conarti/eslint-plugin-feature-sliced": "^1.0.5"
   }
 }

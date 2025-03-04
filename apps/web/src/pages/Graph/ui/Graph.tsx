@@ -1,5 +1,5 @@
-import { CytoscapeComponent } from '@/shared/ui/graph-viewer';
 import { useGraphViewModel } from '../model/useGraphViewModel';
+import { CytoscapeComponent } from '@/shared/ui/graph-viewer';
 
 function Graph() {
   const vm = useGraphViewModel();

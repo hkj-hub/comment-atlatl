@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { graphSlice } from '@/entities/graph';
 import { createCommentNode, createUserNode, getGraphdbCytoscape } from '../comment';
 import { loadComment, saveComment } from '../comment/persistence';
 import type { MessagePaylad } from '@/entities/message';
+import { graphSlice } from '@/entities/graph';
 
 export const createUserNodeAction = createAsyncThunk<
   void,

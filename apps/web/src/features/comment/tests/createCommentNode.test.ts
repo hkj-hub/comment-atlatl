@@ -1,6 +1,6 @@
-import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 import { createCommentNode, createUserNode, initDb } from '../model/comment/create';
 import { getQueryData } from './mock/util';
+import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 
 jest.mock('@kuzu/kuzu-wasm', () => {
   const originalModule = jest.requireActual('@kuzu/kuzu-wasm');

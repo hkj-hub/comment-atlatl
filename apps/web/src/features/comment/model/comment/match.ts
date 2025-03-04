@@ -1,7 +1,7 @@
-import { featureFlag } from '@/shared/config/featureFlag';
-import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 import type { MessagePaylad } from '@/entities/message';
 import type { Connection, QueryResult } from '@kuzu/kuzu-wasm';
+import { featureFlag } from '@/shared/config/featureFlag';
+import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 
 type ID = { offset: string; table: string };
 const getQueryData = (result: QueryResult) => {

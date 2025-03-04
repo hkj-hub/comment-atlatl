@@ -1,7 +1,7 @@
-import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 import { createCommentNode, initDb } from '../model/comment/create';
 import { getGraphdbCytoscape } from '../model/comment/match';
 import { msg1, msg2 } from './fixture/commentData';
+import { getGraphDbClient } from '@/shared/lib/graphdb/kuzu';
 
 jest.mock('@kuzu/kuzu-wasm', () => {
   const originalModule = jest.requireActual('@kuzu/kuzu-wasm');

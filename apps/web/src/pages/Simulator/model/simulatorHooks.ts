@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { joinP2PRoomActionForSimulator } from './joinP2PRoomActionForSimulator';
 import {
   simulateLoop,
   simulator,
@@ -9,7 +10,6 @@ import {
 } from '@/entities/simulator';
 import { sendMessageAction } from '@/features/comment';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
-import { joinP2PRoomActionForSimulator } from './joinP2PRoomActionForSimulator';
 
 export const useSimulatorHooks = () => {
   const dispatch = useAppDispatch();
