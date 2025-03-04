@@ -1,4 +1,3 @@
-/* eslint-disable @conarti/feature-sliced/layers-slices */
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { store } from '@/app/store';
