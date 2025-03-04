@@ -20,14 +20,14 @@ const config = {
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
   coveragePathIgnorePatterns: ['<rootDir>/.*\\.m?js$', '/mock/', '/tests/'],
   collectCoverage: true,
-  coverageDirectory: './docs/astro/public/comment-atlatl-jest-coverage',
+  coverageDirectory: '../../docs/astro/public/comment-atlatl-jest-coverage',
 
   reporters: [
     'default',
     [
       'jest-html-reporters',
       {
-        publicPath: './docs/astro/public/comment-atlatl-jest-reports',
+        publicPath: '../../docs/astro/public/comment-atlatl-jest-reports',
         filename: 'jest.html',
       },
     ],
