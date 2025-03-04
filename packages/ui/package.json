@@ -2,15 +2,11 @@
   "name": "@comment-atlatl/ui",
   "version": "0.10.0",
   "private": true,
+  "exports": {
+    "./*": "./src/*.tsx"
+  },
   "scripts": {
-    "prepare": "git config --local core.hooksPath .githooks && echo Changed hooks directory when npm install",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "type-check": "tsc",
-    "generate-url": "node -r dotenv/config bin/token.js dotenv_config_path=./.env.local",
-    "test": "jest --config ./jest.config.mjs",
+    "lint": "eslint . --max-warnings 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o ../../docs/astro/public/comment-atlatl-components"
   },

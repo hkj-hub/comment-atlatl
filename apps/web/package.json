@@ -1,6 +1,7 @@
 {
   "name": "@comment-atlatl/web",
   "version": "0.10.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "prepare": "git config --local core.hooksPath .githooks && echo Changed hooks directory when npm install",
@@ -15,6 +16,7 @@
     "build-storybook": "storybook build -o ../../docs/astro/public/comment-atlatl-components"
   },
   "dependencies": {
+    "@comment-atlatl/ui": "*",
     "@dimforge/rapier2d": "^0.14.0",
     "@kuzu/kuzu-wasm": "^0.7.0",
     "@reduxjs/toolkit": "^2.6.0",
