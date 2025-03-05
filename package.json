@@ -3,6 +3,7 @@
   "version": "0.10.0",
   "private": true,
   "scripts": {
+    "prepare": "git config --local core.hooksPath .githooks && echo Changed hooks directory when npm install",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
