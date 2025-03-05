@@ -66,10 +66,9 @@ jobs:
       - name: Jest Unit Test
         run: npm run test
 
-      # 2025.03 エラーになるのでいったんスキップ
-      # # build storybook
-      # - name: Build Storybook
-      #   run: npm run build-storybook
+      # build storybook
+      - name: Build Storybook
+        run: npm run build-storybook
 
       # init depcruise
       - name: Setup Graphviz
