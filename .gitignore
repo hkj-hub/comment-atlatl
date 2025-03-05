@@ -51,4 +51,5 @@ storybook-static
 # vercel
 .vercel
 
-
+# Github Actionsで Loading PostCSS "@tailwindcss/postcss" plugin failed: Cannot find module '@tailwindcss/oxide-linux-x64-gnu' というエラーがでる
+package-lock.json
