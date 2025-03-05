@@ -4,6 +4,10 @@ import type { NextConfig } from 'next';
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  experimental: {
+    // https://techblog.roxx.co.jp/entry/2022/08/08/130000
+    externalDir: true,
+  },
   webpack: (config, { isServer }) => {
     config.experiments = { asyncWebAssembly: true, layers: true };
     const wasmPathPrefix = isServer ? '../' : '';
