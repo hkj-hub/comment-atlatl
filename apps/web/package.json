@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc",
+    "build-depcruise": "npx depcruise src --include-only \"^src\" --output-type dot | dot -T svg > ../../docs/astro/public/images/dependency-graph.svg",
     "generate-url": "node -r dotenv/config bin/token.js dotenv_config_path=./.env.local",
     "test": "jest --config ./jest.config.mjs"
   },
@@ -30,6 +31,7 @@
     "@comment-atlatl/typescript-config": "*",
     "@skyway-sdk/room": "^1.11.1",
     "@skyway-sdk/token": "^1.7.0",
+    "dependency-cruiser": "^16.10.0",
     "@tailwindcss/postcss": "^4.0.9",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
