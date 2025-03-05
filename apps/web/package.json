@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc",
+    "ncu": "ncu -u",
     "build-depcruise": "npx depcruise src --include-only \"^src\" --output-type dot | dot -T svg > ../../docs/astro/public/images/dependency-graph.svg",
     "generate-url": "node -r dotenv/config bin/token.js dotenv_config_path=./.env.local",
     "test": "jest --config ./jest.config.mjs"

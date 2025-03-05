@@ -10,6 +10,9 @@
     "./my-next-js": "./my-next.js",
     "./my-next-storybook-js": "./my-next-storybook.js"
   },
+  "scripts": {
+    "ncu": "ncu -u"
+  },
   "devDependencies": {
     "@conarti/eslint-plugin-feature-sliced": "^1.0.5",
     "@eslint/eslintrc": "^3.3.0",

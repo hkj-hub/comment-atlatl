@@ -9,6 +9,7 @@
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "storybook": "storybook dev -p 6006",
+    "ncu": "ncu -u",
     "build-storybook": "storybook build -o ../../docs/astro/public/comment-atlatl-components"
   },
   "dependencies": {
