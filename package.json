@@ -9,7 +9,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "test": "turbo run test",
-    "build-storybook": "cd packages/ui && yarn build-storybook",
+    "build-storybook": "cd packages/ui && npm run build-storybook",
     "build-diagrams": "cd docs/diagrams && python deploy.py"
   },
   "devDependencies": {
