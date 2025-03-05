@@ -68,6 +68,7 @@ jobs:
       # build storybook
       - name: Build Storybook
         run: npm run build-storybook
+
       # init depcruise
       - name: Setup Graphviz
         uses: ts-graphviz/setup-graphviz@v2
