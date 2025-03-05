@@ -20,7 +20,6 @@
     "@dimforge/rapier2d": "^0.14.0",
     "@kuzu/kuzu-wasm": "^0.7.0",
     "@reduxjs/toolkit": "^2.6.0",
-    "boring-avatars": "^1.11.2",
     "cytoscape": "^3.31.1",
     "next": "15.2.1",
     "react": "^19.0.0",
@@ -30,8 +29,8 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@comment-atlatl/typescript-config": "*",
     "@comment-atlatl/eslint-config": "*",
+    "@comment-atlatl/typescript-config": "*",
     "@skyway-sdk/room": "^1.11.1",
     "@skyway-sdk/token": "^1.7.0",
     "@tailwindcss/postcss": "^4.0.9",

@@ -1,4 +1,5 @@
-const { SkyWayAuthToken, uuidV4, nowInSec } = require('@skyway-sdk/token');
+/* eslint-disable no-undef */
+import { SkyWayAuthToken, uuidV4, nowInSec } from '@skyway-sdk/token';
 
 const applicationToken = process.env.APPLICATION_TOKEN;
 const secretToken = process.env.SECRET_TOKEN;

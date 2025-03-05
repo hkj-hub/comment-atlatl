@@ -1,5 +1,5 @@
+import { Layout } from '@comment-atlatl/ui/components';
 import Link from 'next/link';
-import Layout from '@/shared/ui/Layout';
 
 const AboutPage = () => (
   <Layout title="About | Next.js + TypeScript Example">
