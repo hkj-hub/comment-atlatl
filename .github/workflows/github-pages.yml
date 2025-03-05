@@ -65,7 +65,7 @@ jobs:
 
       # npm ライブラリインストール ※ prepareはgithooksの設定なのでignore-scriptsオプションで無視。
       - name: Packages install
-        run: npm i --ignore-scripts --force
+        run: npm i --ignore-scripts
 
       # jest test & reports 作成
       - name: Jest Unit Test
