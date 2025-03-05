@@ -1,5 +1,4 @@
 import { SimulatorBaseWrapper as ViewerBaseWrapper } from '@comment-atlatl/ui/components';
-
 import React from 'react';
 import RectDiv from './components/RectDiv';
 import { RectTextDiv } from './components/RectTextDiv';

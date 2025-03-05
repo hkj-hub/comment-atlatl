@@ -1,5 +1,5 @@
+import { HistoryComment } from '@comment-atlatl/ui/components';
 import React from 'react';
-import HistoryComment from './components/HistoryComment';
 import { messageSelector } from '@/entities/message';
 import { useAppSelector } from '@/shared/lib/store';
 
