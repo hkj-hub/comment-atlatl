@@ -1,0 +1,18 @@
+{
+  "extends": "@comment-atlatl/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts", // これを入れないとcssモジュールがエラーになる
+    "src"
+  ],
+  "exclude": ["node_modules", "eslint.config.mjs"]
+}
