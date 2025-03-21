@@ -50,6 +50,7 @@ const nextConfig: NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  distDir: '../../.next',
 };
 
 module.exports = nextConfig;
