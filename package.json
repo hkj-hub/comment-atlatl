@@ -3,18 +3,22 @@
   "version": "0.10.0",
   "private": true,
   "scripts": {
+    "prepare": "git config --local core.hooksPath .githooks && echo Changed hooks directory when npm install",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
+    "test": "turbo run test",
+    "ncu": "turbo run ncu",
+    "build-depcruise": "cd apps/web && npm run build-depcruise",
+    "build-storybook": "cd packages/ui && npm run build-storybook",
     "build-diagrams": "cd docs/diagrams && python deploy.py"
   },
   "devDependencies": {
-    "dependency-cruiser": "^16.10.0",
     "turbo": "^2.4.4"
   },
-  "packageManager": "npm@11.1.0",
+  "packageManager": "npm@11.2.0",
   "engines": {
     "node": "22.x"
   },

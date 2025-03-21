@@ -6,9 +6,9 @@ on:
     paths:
       - .github/workflows/**
       - docs/** # documentsフォルダ内が更新されたときに実施
-      - tests/**
-      - src/**/tests/**
-      - stories/**
+      - apps/**/tests/**
+      - apps/**/src/**/tests/**
+      - pacakages/ui/stories/**
   workflow_dispatch:
 permissions:
   contents: read
@@ -53,13 +53,19 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
 
-      # npm ライブラリインストール ※ prepareはgithooksの設定なのでignore-scriptsオプションで無視。 ※storybookとnextが不整合のバージョンのため 暫定対応で force フラグをつけている
+      # Loading PostCSS "@tailwindcss/postcss" plugin failed: Cannot find module '@tailwindcss/oxide-linux-x64-gnu' のエラーがでるのでいったんciはやめてみる
+      # # npm ライブラリインストール ※ prepareはgithooksの設定なのでignore-scriptsオプションで無視。 ※storybookとnextが不整合のバージョンのため 暫定対応で force フラグをつけている
+      # - name: Packages install
+      #   run: npm ci --ignore-scripts --force
+
+      # npm ライブラリインストール ※ prepareはgithooksの設定なのでignore-scriptsオプションで無視。
       - name: Packages install
-        run: npm ci --ignore-scripts --force
+        run: npm i --ignore-scripts
 
       # jest test & reports 作成
       - name: Jest Unit Test
@@ -68,6 +74,7 @@ jobs:
       # build storybook
       - name: Build Storybook
         run: npm run build-storybook
+
       # init depcruise
       - name: Setup Graphviz
         uses: ts-graphviz/setup-graphviz@v2
